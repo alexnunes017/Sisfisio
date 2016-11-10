@@ -29,6 +29,7 @@ import br.com.nunes.fisioterapia.domain.Usuario;
 public class TratamentoBean implements Serializable {
 
   private Consulta consulta;
+  private Consulta retorno;
   private Tratamento tratamento;
   private List<Consulta> consultas;
   private List<Tratamento> tratamentos;
@@ -47,6 +48,14 @@ public class TratamentoBean implements Serializable {
 
   public List<Consulta> getConsultas() {
     return consultas;
+  }
+
+  public Consulta getRetorno() {
+    return retorno;
+  }
+
+  public void setRetorno(Consulta retorno) {
+    this.retorno = retorno;
   }
 
   public void setConsultas(List<Consulta> consultas) {
@@ -101,15 +110,42 @@ public class TratamentoBean implements Serializable {
     this.tratamentos = tratamentos;
   }
 
+  public void novo() {
+    try {
+      FisioterapeutaDAO fisioterapeutaDAO = new FisioterapeutaDAO();
+      PessoaDAO pessoaDAO = new PessoaDAO();
+      UsuarioDAO usuarioDAO = new UsuarioDAO();
+      MedicoDAO medicoDAO = new MedicoDAO();
+
+      consulta = new Consulta();
+      tratamento = new Tratamento();
+      fisioterapeutas = fisioterapeutaDAO.listar();
+      pessoas = pessoaDAO.listarTipo("tipo", 'P');
+      usuarios = usuarioDAO.listar();
+      medicos = medicoDAO.listar();
+
+    } catch (RuntimeException e) {
+      Messages.addGlobalError("Ocorreu um erro ao tentar gerar uma nova consulta");
+      e.printStackTrace();
+    }
+  }
+
   public void salvar() {
 
     try {
+
+      TratamentoDAO tratamentoDAO = new TratamentoDAO();
       ConsultaDAO consultaDAO = new ConsultaDAO();
+      
       consulta.setStatus('R');
       consultaDAO.merge(consulta);
-      TratamentoDAO tratamentoDAO = new TratamentoDAO();
+      
       tratamento.setConsulta(consulta);
+      
+      
       tratamentoDAO.salvar(tratamento);
+
+      
 
       novo();
       listar();
@@ -146,26 +182,6 @@ public class TratamentoBean implements Serializable {
     }
   }
 
-  public void novo() {
-    try {
-      FisioterapeutaDAO fisioterapeutaDAO = new FisioterapeutaDAO();
-      PessoaDAO pessoaDAO = new PessoaDAO();
-      UsuarioDAO usuarioDAO = new UsuarioDAO();
-      MedicoDAO medicoDAO = new MedicoDAO();
-
-      consulta = new Consulta();
-      tratamento = new Tratamento();
-      fisioterapeutas = fisioterapeutaDAO.listar();
-      pessoas = pessoaDAO.listarTipo("tipo", 'P');
-      usuarios = usuarioDAO.listar();
-      medicos = medicoDAO.listar();
-
-    } catch (RuntimeException e) {
-      Messages.addGlobalError("Ocorreu um erro ao tentar gerar uma nova consulta");
-      e.printStackTrace();
-    }
-  }
-
   public void excluir(ActionEvent event) {
     try {
       consulta = (Consulta) event.getComponent().getAttributes().get("consultaSelecionada");
@@ -192,6 +208,7 @@ public class TratamentoBean implements Serializable {
     consulta.getFisioterapeuta().getPessoa();
     consulta.getPessoa();
     consulta.getMedico();
+  
 
   }
 

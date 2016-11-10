@@ -15,21 +15,10 @@ import br.com.nunes.fisioterapia.dao.NE_IndiceDAO;
 import br.com.nunes.fisioterapia.dao.NE_SensibilidadeProfundaDAO;
 import br.com.nunes.fisioterapia.dao.NE_TonusDAO;
 import br.com.nunes.fisioterapia.dao.NeurologicaDAO;
-import br.com.nunes.fisioterapia.dao.TR_AdmDAO;
-import br.com.nunes.fisioterapia.dao.TR_ForcaMuscularDAO;
-import br.com.nunes.fisioterapia.dao.TR_ReflexosDAO;
-import br.com.nunes.fisioterapia.dao.TR_SensibilidadeDAO;
-import br.com.nunes.fisioterapia.dao.TR_TestesEspeciaisDAO;
-import br.com.nunes.fisioterapia.dao.TraumatologicaDAO;
 import br.com.nunes.fisioterapia.domain.Consulta;
 import br.com.nunes.fisioterapia.domain.NE_Indice;
 import br.com.nunes.fisioterapia.domain.NE_SensibilidadeProfunda;
 import br.com.nunes.fisioterapia.domain.NE_Tonus;
-import br.com.nunes.fisioterapia.domain.TR_Adm;
-import br.com.nunes.fisioterapia.domain.TR_ForcaMuscular;
-import br.com.nunes.fisioterapia.domain.TR_Reflexos;
-import br.com.nunes.fisioterapia.domain.TR_Sensibilidade;
-import br.com.nunes.fisioterapia.domain.TR_TestesEspeciais;
 import br.com.nunes.fisioterapia.domain.Neurologica;
 
 @SuppressWarnings("serial")

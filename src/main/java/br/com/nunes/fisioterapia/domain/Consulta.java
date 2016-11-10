@@ -43,8 +43,6 @@ public class Consulta extends GenericDomain {
   @Column(length = 250)
   private String diagnostico;
 
-  @Column(length = 250)
-  private String tratamento;
 
   @Column(length = 1, nullable = false)
   private Character avaliacao;
@@ -72,11 +70,10 @@ public class Consulta extends GenericDomain {
   @OneToMany(mappedBy = "consulta", fetch = FetchType.EAGER)
   @Fetch(value = FetchMode.SUBSELECT)
   private List<Geriatrica> geriatricas;
-  
+
   @OneToMany(mappedBy = "consulta", fetch = FetchType.EAGER)
   @Fetch(value = FetchMode.SUBSELECT)
   private List<Tratamento> tratamentos;
-
 
   public String getMotivo() {
     return motivo;
@@ -140,13 +137,7 @@ public class Consulta extends GenericDomain {
     this.diagnostico = diagnostico;
   }
 
-  public String getTratamento() {
-    return tratamento;
-  }
 
-  public void setTratamento(String tratamento) {
-    this.tratamento = tratamento;
-  }
 
   @Transient
   public String getTipoFormatado() {
@@ -242,5 +233,12 @@ public class Consulta extends GenericDomain {
     this.geriatricas = geriatricas;
   }
 
-  
+  public List<Tratamento> getTratamentos() {
+    return tratamentos;
+  }
+
+  public void setTratamentos(List<Tratamento> tratamentos) {
+    this.tratamentos = tratamentos;
+  }
+
 }

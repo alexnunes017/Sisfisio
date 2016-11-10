@@ -24,116 +24,140 @@ import br.com.nunes.fisioterapia.domain.Usuario;
 @ManagedBean
 @ViewScoped
 public class UsuarioBean implements Serializable {
-	private Usuario usuario;
+  private Usuario usuario;
 
-	private List<Pessoa> pessoas;
-	private List<Usuario> usuarios;
+  private List<Pessoa> pessoas;
+  private List<Usuario> usuarios;
 
-	private Estado estado;
-	private List<Estado> estados;
+  private Estado estado;
+  private List<Estado> estados;
 
-	private List<Cidade> cidades;
+  private List<Cidade> cidades;
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
+  public Usuario getUsuario() {
+    return usuario;
+  }
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+  public void setUsuario(Usuario usuario) {
+    this.usuario = usuario;
+  }
 
-	public List<Pessoa> getPessoas() {
-		return pessoas;
-	}
+  public List<Pessoa> getPessoas() {
+    return pessoas;
+  }
 
-	public void setPessoas(List<Pessoa> pessoas) {
-		this.pessoas = pessoas;
-	}
+  public void setPessoas(List<Pessoa> pessoas) {
+    this.pessoas = pessoas;
+  }
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
-	}
+  public List<Usuario> getUsuarios() {
+    return usuarios;
+  }
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
-	}
+  public void setUsuarios(List<Usuario> usuarios) {
+    this.usuarios = usuarios;
+  }
 
-	@PostConstruct
-	public void listar() {
-		try {
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			usuarios = usuarioDAO.listar("tipo");
-		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar listar os usuários");
-			erro.printStackTrace();
-		}
-	}
+  public Estado getEstado() {
+    return estado;
+  }
 
-	public void novo() {
-		try {
-			usuario = new Usuario();
-			Character tipos[] = { 'F', 'U' };
-			PessoaDAO pessoaDAO = new PessoaDAO();
-			pessoas = pessoaDAO.listarTipos("tipo", tipos);
-		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar criar um novo usuário");
-			erro.printStackTrace();
-		}
-	}
+  public void setEstado(Estado estado) {
+    this.estado = estado;
+  }
 
-	public void salvar() {
-		try {
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			SimpleHash hash = new SimpleHash("md5", usuario.getSenha());
+  public List<Estado> getEstados() {
+    return estados;
+  }
 
-			usuario.setSenha(hash.toHex());
+  public void setEstados(List<Estado> estados) {
+    this.estados = estados;
+  }
 
-			usuarioDAO.merge(usuario);
+  public List<Cidade> getCidades() {
+    return cidades;
+  }
 
-			usuario = new Usuario();
-			usuarios = usuarioDAO.listar("tipo");
+  public void setCidades(List<Cidade> cidades) {
+    this.cidades = cidades;
+  }
 
-			PessoaDAO pessoaDAO = new PessoaDAO();
-			pessoas = pessoaDAO.listar("nome");
+  @PostConstruct
+  public void listar() {
+    try {
+      UsuarioDAO usuarioDAO = new UsuarioDAO();
+      usuarios = usuarioDAO.listar("tipo");
+    } catch (RuntimeException erro) {
+      Messages.addGlobalError("Ocorreu um erro ao tentar listar os usuários");
+      erro.printStackTrace();
+    }
+  }
 
-			Messages.addGlobalInfo("Usuário salvo com sucesso");
-		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar salvar o usuário");
-			erro.printStackTrace();
-		}
-	}
+  public void novo() {
+    try {
+      usuario = new Usuario();
+      Character tipos[] = { 'F', 'U' };
+      PessoaDAO pessoaDAO = new PessoaDAO();
+      pessoas = pessoaDAO.listarTipos("tipo", tipos);
+    } catch (RuntimeException erro) {
+      Messages.addGlobalError("Ocorreu um erro ao tentar criar um novo usuário");
+      erro.printStackTrace();
+    }
+  }
 
-	public void editar(ActionEvent evento) {
-		try {
-			novo();
-			usuario = (Usuario) evento.getComponent().getAttributes().get("usuarioSelecionado");
+  public void salvar() {
+    try {
+      UsuarioDAO usuarioDAO = new UsuarioDAO();
+      SimpleHash hash = new SimpleHash("md5", usuario.getSenha());
 
-			estado = usuario.getPessoa().getCidade().getEstado();
+      usuario.setSenha(hash.toHex());
 
-			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.listar("nome");
+      usuarioDAO.merge(usuario);
 
-			CidadeDAO cidadeDAO = new CidadeDAO();
-			cidades = cidadeDAO.buscarPorEstado(estado.getCodigo());
-		} catch (RuntimeException erro) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar selecionar o usuario");
-		}
-	}
+      usuario = new Usuario();
+      usuarios = usuarioDAO.listar("tipo");
 
-	public void excluir(ActionEvent evento) {
-		try {
-			usuario = (Usuario) evento.getComponent().getAttributes().get("usuarioSelecionado");
+      PessoaDAO pessoaDAO = new PessoaDAO();
+      pessoas = pessoaDAO.listar("nome");
 
-			usuario.setAtivo(false);
+      Messages.addGlobalInfo("Usuário salvo com sucesso");
+    } catch (RuntimeException erro) {
+      Messages.addGlobalError("Ocorreu um erro ao tentar salvar o usuário");
+      erro.printStackTrace();
+    }
+  }
 
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			usuarioDAO.merge(usuario);
-			listar();
-			Messages.addGlobalInfo("Usuario inativado com sucesso!");
-		} catch (RuntimeException e) {
-			Messages.addGlobalError("Ocorreu um erro ao tentar excluir a pessoa");
-			e.printStackTrace();
-		}
-	}
+  public void editar(ActionEvent evento) {
+    try {
+      novo();
+      usuario = (Usuario) evento.getComponent().getAttributes().get("usuarioSelecionado");
+
+      estado = usuario.getPessoa().getCidade().getEstado();
+
+      EstadoDAO estadoDAO = new EstadoDAO();
+      estados = estadoDAO.listar("nome");
+
+      CidadeDAO cidadeDAO = new CidadeDAO();
+      cidades = cidadeDAO.buscarPorEstado(estado.getCodigo());
+    } catch (RuntimeException erro) {
+      Messages.addGlobalError("Ocorreu um erro ao tentar selecionar o usuario");
+    }
+  }
+
+  public void excluir(ActionEvent evento) {
+    try {
+      usuario = (Usuario) evento.getComponent().getAttributes().get("usuarioSelecionado");
+
+      usuario.setAtivo(false);
+
+      UsuarioDAO usuarioDAO = new UsuarioDAO();
+      usuarioDAO.merge(usuario);
+      listar();
+      Messages.addGlobalInfo("Usuario inativado com sucesso!");
+    } catch (RuntimeException e) {
+      Messages.addGlobalError("Ocorreu um erro ao tentar excluir a pessoa");
+      e.printStackTrace();
+    }
+  }
 
 }

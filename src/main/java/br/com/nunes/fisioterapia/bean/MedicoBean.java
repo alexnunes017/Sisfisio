@@ -12,7 +12,6 @@ import org.omnifaces.util.Messages;
 
 import br.com.nunes.fisioterapia.dao.MedicoDAO;
 import br.com.nunes.fisioterapia.domain.Medico;
-import br.com.nunes.fisioterapia.domain.Medico;
 
 @SuppressWarnings("serial")
 @ManagedBean

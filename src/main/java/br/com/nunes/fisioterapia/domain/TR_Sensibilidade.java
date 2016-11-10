@@ -2,15 +2,17 @@ package br.com.nunes.fisioterapia.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class TR_Sensibilidade extends GenericDomain {
 
-	@Column(length = 50, nullable = false)
+	/**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
+  @Column(length = 50, nullable = false)
 	private String dermatomos;
 	@Column(length = 50, nullable = false)
 	private String direita;

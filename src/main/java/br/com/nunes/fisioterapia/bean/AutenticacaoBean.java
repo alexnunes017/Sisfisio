@@ -6,16 +6,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.swing.JOptionPane;
 
-import org.hibernate.Session;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
 
 import br.com.nunes.fisioterapia.dao.UsuarioDAO;
 import br.com.nunes.fisioterapia.domain.Pessoa;
 import br.com.nunes.fisioterapia.domain.Usuario;
-import br.com.nunes.fisioterapia.util.HibernateUtil;
 
 @ManagedBean
 @SessionScoped     

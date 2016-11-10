@@ -10,15 +10,12 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
-import br.com.nunes.fisioterapia.dao.CidadeDAO;
 import br.com.nunes.fisioterapia.dao.ConsultaDAO;
-import br.com.nunes.fisioterapia.dao.EstadoDAO;
 import br.com.nunes.fisioterapia.dao.FisioterapeutaDAO;
 import br.com.nunes.fisioterapia.dao.MedicoDAO;
 import br.com.nunes.fisioterapia.dao.PessoaDAO;
 import br.com.nunes.fisioterapia.dao.UsuarioDAO;
 import br.com.nunes.fisioterapia.domain.Consulta;
-import br.com.nunes.fisioterapia.domain.Estado;
 import br.com.nunes.fisioterapia.domain.Fisioterapeuta;
 import br.com.nunes.fisioterapia.domain.Medico;
 import br.com.nunes.fisioterapia.domain.Pessoa;

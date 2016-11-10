@@ -3,7 +3,7 @@ package br.com.nunes.fisioterapia.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Tratamento extends GenericDomain {
@@ -16,7 +16,7 @@ public class Tratamento extends GenericDomain {
   @Column(nullable = false, length = 255)
   private String tratamento;
 
-  @OneToOne
+  @ManyToOne
   @JoinColumn(nullable = false)
   private Consulta consulta;
 
