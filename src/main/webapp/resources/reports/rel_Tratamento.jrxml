@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_Tratamento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f44aa5c1-4498-438b-b333-83c849d65c83">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="consulta" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT * FROM view_Tratamento t  WHERE t.consulta = $P{consulta}]]>
+	</queryString>
+	<field name="consulta" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="avaliacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diagnostico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="motivo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fisioterapeuta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="crefito" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="crm" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tratamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<image>
+				<reportElement x="228" y="0" width="89" height="53" uuid="03314838-9b36-4414-aedb-70aa86ade28e"/>
+				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" forecolor="#0000CC" uuid="c911b040-5f1e-4896-8533-71d52d448e3f"/>
+				<box>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relátorio de Tratamento]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="606" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="606" uuid="100789ba-a179-4a59-bfe6-cd1baef6c5af"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="16" y="450" width="528" height="143" uuid="67b19a0b-b6c5-4c74-8120-1b3f80816370"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement x="16" y="250" width="528" height="107" uuid="9b188ff1-8772-4d9e-be72-ff2e134e0e53"/>
+			</rectangle>
+			<textField>
+				<reportElement x="70" y="13" width="147" height="20" uuid="25fdca7a-9f84-4376-8805-b3fc661bf605"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consulta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="264" y="13" width="98" height="20" uuid="3e017730-4e45-4d8f-a2cc-389f5754ae6f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="261" width="513" height="82" uuid="a21279b1-d013-4728-8be8-3eeab1af8fd1"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{diagnostico}]]></textFieldExpression>
+			</textField>
+			<textField pattern="hh:mm">
+				<reportElement x="418" y="13" width="126" height="20" uuid="875d0964-3d3e-4421-805d-f4b281a96d64"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="33" width="489" height="40" uuid="991a9d37-2bc7-45e7-a02a-d7659ee4fbf7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="61" y="135" width="213" height="20" uuid="c80c4e57-ad3b-4ad5-bf73-46e2f7ea808b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="135" width="185" height="20" uuid="13d9b4b0-5e62-46b0-9883-8376d7cbb65e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{crm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="21" y="460" width="512" height="133" uuid="4eb00882-e082-4daf-a9ab-abb6f9eda044"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tratamento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="11" y="13" width="57" height="20" uuid="bc3b1cb5-7080-4317-9f4d-6c88529f95a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consulta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="215" y="13" width="45" height="20" uuid="c34a3009-c2e2-4c43-929b-e47bb95f9e1d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="221" width="544" height="20" uuid="29139cf9-aab0-44f2-9167-aa0633ac321e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Diagnostico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="13" width="47" height="20" uuid="70adc890-cdc6-425c-a93c-1be89d852a10"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="33" width="47" height="40" uuid="8c3e4289-66b7-4a7f-b81a-623edc0df02e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="73" width="57" height="20" uuid="000686e3-a5e8-43a7-b5f9-4237a4e406ed"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Paciente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="104" width="89" height="20" uuid="256c310e-75dc-4631-b04e-f4ef21329d0a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fisioterapeuta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="104" width="44" height="20" uuid="f20337be-e975-4901-87ff-8138ba94e8a4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Crefito:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="135" width="47" height="20" uuid="79ed5f22-e2d3-4291-8e56-d2ad712681d5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Médico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="313" y="135" width="34" height="20" uuid="e2448cfe-1659-495e-a036-206ea084e059"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CRM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="415" width="544" height="20" uuid="80e7d9da-eb30-47d5-b236-97427293130e"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tratamento]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="73" width="487" height="20" uuid="b9c99637-e3ef-4fb5-82b4-5386b867e504"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="103" y="104" width="213" height="20" uuid="f7c29027-2524-47ff-9f6f-79baf0d6aa4c"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fisioterapeuta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="362" y="104" width="185" height="20" uuid="ef5c57e7-f03f-4bee-9033-f387d9063bf5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{crefito}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="170" width="555" height="1" uuid="c5b57386-c47e-4797-b9f0-3ba572fb70f4"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="450" y="0" width="83" height="16" uuid="290b7982-1414-4b1c-952a-af1d210f9591"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página(s) "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="533" y="0" width="22" height="16" uuid="40bb8ebb-8669-4873-b512-4be1d420395e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="16" uuid="459abd30-9afa-44bf-9c1c-e872f20d532c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[SisFisio - Sistema de Fisiotepia]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

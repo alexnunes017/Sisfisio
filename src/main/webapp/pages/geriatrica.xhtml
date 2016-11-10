@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel header="Avaliações- Listagem" styleClass="headerfont">
+				<p:dataTable id="tabela" widgetVar="tabela"
+					emptyMessage="Nenhum registro encontrado." paginator="true"
+					value="#{geriatricaBean.consultas}" var="consulta" rows="5"
+					styleClass="tabelafont">
+					<!-- 					<f:facet name="header"> -->
+					<!-- 						<p:commandButton icon="ui-icon-document" -->
+					<!-- 							oncomplete="PF('dialogo').show();" -->
+					<!-- 							actionListener="#{geriatricaBean.novo}" -->
+					<!-- 							update=":mensagem :formCadastro:painel"> -->
+					<!-- 							<f:actionListener -->
+					<!-- 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" /> -->
+					<!-- 						</p:commandButton> -->
+					<!-- 					</f:facet> -->
+					
+					<p:column style="width:16px">
+						<p:rowToggler />
+					</p:column>
+
+					<p:column headerText="Data" sortBy="#{consulta.dataFormatada}"
+						filterBy="#{consulta.data}">
+						<h:outputText value="#{consulta.dataFormatada}" />
+					</p:column>
+
+					<p:column headerText="Hora" sortBy="#{consulta.hora}"
+						filterBy="#{consulta.hora}">
+						<h:outputText value="#{consulta.hora}" />
+					</p:column>
+
+					<p:column headerText="Paciente" sortBy="#{consulta.pessoa.nome}"
+						filterBy="#{consulta.pessoa.nome}">
+						<h:outputText value="#{consulta.pessoa.nome}" />
+					</p:column>
+
+
+					<p:column headerText="Status" sortBy="#{consulta.statusFormatado}"
+						filterBy="#{consulta.status}">
+						<f:facet name="filter">
+							<p:selectOneMenu onchange="PF('tabela').filter()"   styleClass="outputfont">
+								<f:selectItem itemValue="" itemLabel="Todos" />
+								<f:selectItem itemValue="M" itemLabel="Marcada" />
+								<f:selectItem itemValue="C" itemLabel="Cancelada" />
+								<f:selectItem itemValue="R" itemLabel="Realizada" />
+							</p:selectOneMenu>
+						</f:facet>
+						<h:outputText value="#{consulta.statusFormatado}"/>
+					</p:column>
+
+					<p:column headerText="Fisioterapeuta"
+						sortBy="#{consulta.fisioterapeuta.pessoa.nome}"
+						filterBy="#{consulta.fisioterapeuta.pessoa.nome}">
+						<h:outputText value="#{consulta.fisioterapeuta.pessoa.nome}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-plus	"
+							actionListener="#{geriatricaBean.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-cancel"
+							actionListener="#{geriatricaBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir a consulta" icon="ui-icon-alert" />
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+						</p:commandButton>
+
+
+					</p:column>
+						<p:rowExpansion>
+						<p:dataTable emptyMessage="Nenhum registro encontrado"
+							value="#{consulta.geriatricas}" var="geriatrica" styleClass="tabelafont">
+
+							<p:column headerText="qp">
+								<h:outputText value="#{geriatrica.qp}" />
+							</p:column>
+							<p:column headerText="hpma">
+								<h:outputText value="#{geriatrica.hpma}" />
+							</p:column>
+							<p:column headerText="exames complementares">
+								<h:outputText value="#{geriatrica.examesComplemetares}" />
+							</p:column>
+
+
+
+						</p:dataTable>
+					</p:rowExpansion>
+					
+					
+				</p:dataTable>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Avaliação" widgetVar="dialogo" draggable="false"
+			resizable="false" modal="true" closable="false" dynamic="true">
+			<h:form id="formCadastro">
+
+				<p:tabView id="painel" styleClass="tabview">
+					<p:tab title="1" titleStyleClass="tab">
+						<p:panelGrid columns="4" styleClass="panelGrid">
+							<p:outputLabel for="qp" value="Qp:" styleClass="outputfont" />
+							<p:inputText id="qp" maxlength="50" size="30"
+								value="#{geriatricaBean.geriatrica.qp}" required="true"
+								requiredMessage="O campo 'Qp' é obrigatório" />
+
+							<p:outputLabel for="hpma" value="Hpma:" styleClass="outputfont" />
+							<p:inputText id="hpma" maxlength="50" size="30"
+								value="#{geriatricaBean.geriatrica.hpma}" required="true"
+								requiredMessage="O campo 'Hpma' é obrigatório" />
+
+							<p:outputLabel for="patologias" value="Patologias Associadas:"
+								styleClass="outputfont" />
+							<p:inputText id="patologias" maxlength="50" size="30"
+								value="#{geriatricaBean.geriatrica.patologiasAssociadas}"
+								required="true"
+								requiredMessage="O campo 'Patologias Associadas' são obrigatório" />
+
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="2" titleStyleClass="tab">
+
+						<p:fieldset legend="Sinais Vitais" styleClass="fieldset">
+							<p:panelGrid columns="4">
+
+								<p:outputLabel for="pa" value="PA:" styleClass="outputfont" />
+								<p:inputText id="pa" value="#{geriatricaBean.geriatrica.pa}"
+									requiredMessage="O campo 'PA' é obrigatório" size="5" />
+
+								<p:outputLabel for="fc" value="FC:" styleClass="outputfont" />
+								<p:inputText id="fc" value="#{geriatricaBean.geriatrica.fc}"
+									requiredMessage="O campo 'FC' é obrigatório" size="5" />
+
+								<p:outputLabel for="fr" value="FR:" styleClass="outputfont" />
+								<p:inputText id="fr" value="#{geriatricaBean.geriatrica.fr}"
+									requiredMessage="O campo 'FR' é obrigatório" size="5" />
+
+								<p:outputLabel for="inspecao" value="Inspeção:"
+									styleClass="outputfont" />
+								<p:inputTextarea id="inspecao"
+									value="#{geriatricaBean.geriatrica.inspecao}"
+									requiredMessage="O campo 'Inspeção' é obrigatório" />
+
+							</p:panelGrid>
+						</p:fieldset>
+					</p:tab>
+
+
+
+
+					<p:tab title="3" titleStyleClass="tab">
+						<p:fieldset legend="Locomoção" styleClass="fieldset">
+							<p:panelGrid columns="2" styleClass="panelGrid">
+
+								<p:outputLabel for="cadeira" value="Cadeira de rodas:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="cadeira"
+									value="#{geriatricaBean.locomocao.cadeiraDeRodas}"
+									required="true"
+									requiredMessage="O campo 'Cadeira de rodas' ´obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Com ajuda" />
+									<f:selectItem itemValue="2" itemLabel="Sem ajuda" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="marcha" value="Marcha:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="marcha"
+									value="#{geriatricaBean.locomocao.marcha}" required="true"
+									requiredMessage="O campo 'Marcha' ´obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Independente" />
+									<f:selectItem itemValue="2" itemLabel="Dependente" />
+								</p:selectOneRadio>
+							</p:panelGrid>
+						</p:fieldset>
+					</p:tab>
+					<p:tab title="4" titleStyleClass="tab">
+
+						<p:panelGrid columns="2" styleClass="panelGrid">
+
+							<p:outputLabel for="tipodemarcha" value="Tipo de Marcha:"
+								styleClass="outputfont" />
+							<p:selectOneRadio id="tipodemarcha"
+								value="#{geriatricaBean.locomocao.tipoDeMarcha}" required="true"
+								requiredMessage="O campo 'Tipo de Marcha' ´obrigatório"
+								styleClass="radiofont" columns="4" layout="grid">
+								<f:selectItem itemValue="1" itemLabel="Normal" />
+								<f:selectItem itemValue="2" itemLabel="Claudicante" />
+								<f:selectItem itemValue="3" itemLabel="Ceifante" />
+								<f:selectItem itemValue="4"
+									itemLabel="Inclinação do tronco na osclinação" />
+								<f:selectItem itemValue="5" itemLabel="Base alargada" />
+								<f:selectItem itemValue="6" itemLabel="Passadas curtas" />
+								<f:selectItem itemValue="7" itemLabel="Inseguras" />
+								<f:selectItem itemValue="8" itemLabel="Pé caído" />
+								<f:selectItem itemValue="9" itemLabel="Pé em abdução" />
+								<f:selectItem itemValue="10" itemLabel="Apoio total do pé" />
+								<f:selectItem itemValue="11" itemLabel="Pé equino" />
+								<f:selectItem itemValue="12" itemLabel="Pé em eversão" />
+							</p:selectOneRadio>
+
+							<p:outputLabel for="distubio" value="Distúrbio Trófico:"
+								styleClass="outputfont" />
+							<p:selectOneRadio id="distubio"
+								value="#{geriatricaBean.locomocao.disturbioTrofico}"
+								required="true"
+								requiredMessage="O campo 'Distúrbio Trófico' ´obrigatório"
+								styleClass="radiofont" columns="3" layout="grid">
+								<f:selectItem itemValue="1" itemLabel="Edema com cacifo" />
+								<f:selectItem itemValue="2" itemLabel="Edema sem cacifo" />
+								<f:selectItem itemValue="3" itemLabel="MS total" />
+								<f:selectItem itemValue="4" itemLabel="Extremidade MI" />
+								<f:selectItem itemValue="5" itemLabel="Extremidades, problemas" />
+								<f:selectItem itemValue="6" itemLabel="Ferida" />
+								<f:selectItem itemValue="7" itemLabel="Cicatrizes" />
+								<f:selectItem itemValue="8" itemLabel="Manchas" />
+								<f:selectItem itemValue="9" itemLabel="Cicatrizes cirúrgicas" />
+							</p:selectOneRadio>
+
+
+							<p:outputLabel for="pele" value="Pele:" styleClass="outputfont" />
+							<p:selectOneRadio id="pele"
+								value="#{geriatricaBean.locomocao.pele}" required="true"
+								requiredMessage="O campo 'Pele' ´obrigatório"
+								styleClass="radiofont" columns="3" layout="grid">
+								<f:selectItem itemValue="1" itemLabel="Seca" />
+								<f:selectItem itemValue="2" itemLabel="Manchada" />
+								<f:selectItem itemValue="3" itemLabel="Úmida" />
+								<f:selectItem itemValue="4" itemLabel="Fria" />
+								<f:selectItem itemValue="5" itemLabel="Quente" />
+								<f:selectItem itemValue="6" itemLabel="Escamosa" />
+							</p:selectOneRadio>
+
+
+							<p:outputLabel for="escaras" value="Escaras:"
+								styleClass="outputfont" />
+							<p:selectOneRadio id="escaras"
+								value="#{geriatricaBean.locomocao.escaras}" required="true"
+								requiredMessage="O campo 'Escaras' ´obrigatório"
+								styleClass="radiofont" columns="3" layout="grid">
+								<f:selectItem itemValue="1" itemLabel="Sacro" />
+								<f:selectItem itemValue="2" itemLabel="Ilíaco" />
+								<f:selectItem itemValue="3" itemLabel="Fêmur" />
+								<f:selectItem itemValue="4" itemLabel="Maleolo" />
+							</p:selectOneRadio>
+
+
+						</p:panelGrid>
+					</p:tab>
+
+					<p:tab title="5" titleStyleClass="tab">
+						<p:fieldset legend="Aspecto Psicossocial" styleClass="fieldset">
+							<p:panelGrid columns="4" styleClass="panelGrid">
+								<p:outputLabel for="humor" value="Humor:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="humor"
+									value="#{geriatricaBean.locomocao.humor}" required="true"
+									requiredMessage="O campo 'Humor' ´obrigatório"
+									styleClass="radiofont" columns="4" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Alegre" />
+									<f:selectItem itemValue="2" itemLabel="Nervoso" />
+									<f:selectItem itemValue="3" itemLabel="Apático" />
+									<f:selectItem itemValue="4" itemLabel="Cooperativo" />
+									<f:selectItem itemValue="5" itemLabel="Agressivo" />
+									<f:selectItem itemValue="6" itemLabel="Introspectivo" />
+									<f:selectItem itemValue="7" itemLabel="Deprimido" />
+									<f:selectItem itemValue="8" itemLabel="Extrovertido" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="orientacao" value="Orientação Espacial:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="orientacao"
+									value="#{geriatricaBean.locomocao.orientacaoEspacial}"
+									required="true"
+									requiredMessage="O campo 'Orientação Espacial' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Normal" />
+									<f:selectItem itemValue="2" itemLabel="Alterada" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="memoriaantiga" value="Memória Antiga:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="memoriaantiga"
+									value="#{geriatricaBean.locomocao.memoriaAntiga}"
+									required="true"
+									requiredMessage="O campo 'Memória Antiga' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Normal" />
+									<f:selectItem itemValue="2" itemLabel="Alterada" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="capacidade"
+									value="Capaciadade de seguir instruções:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="capacidade"
+									value="#{geriatricaBean.locomocao.capacidade}" required="true"
+									requiredMessage="O campo 'Capacidade' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Normal" />
+									<f:selectItem itemValue="2" itemLabel="Alterada" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="memoriaatual" value="Memória Atual:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="memoriaatual"
+									value="#{geriatricaBean.locomocao.memoriaAtual}"
+									required="true"
+									requiredMessage="O campo 'Memória Atual' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Normal" />
+									<f:selectItem itemValue="2" itemLabel="Alterada" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="fala" value="Fala:" styleClass="outputfont" />
+								<p:selectOneRadio id="fala"
+									value="#{geriatricaBean.locomocao.fala}" required="true"
+									requiredMessage="O campo 'Fala' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Normal" />
+									<f:selectItem itemValue="2" itemLabel="Alterada" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="visao" value="Visão:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="visao"
+									value="#{geriatricaBean.locomocao.visao}" required="true"
+									requiredMessage="O campo 'Visão' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Normal" />
+									<f:selectItem itemValue="2" itemLabel="Alterada" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="audicao" value="Audição:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="audicao"
+									value="#{geriatricaBean.locomocao.audicao}" required="true"
+									requiredMessage="O campo 'Audição' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Normal" />
+									<f:selectItem itemValue="2" itemLabel="Alterada" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="avds" value="AVD's:" styleClass="outputfont" />
+								<p:selectOneRadio id="avds"
+									value="#{geriatricaBean.locomocao.avds}" required="true"
+									requiredMessage="O campo 'AVD's' ´obrigatório"
+									styleClass="radiofont" columns="3" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Independente" />
+									<f:selectItem itemValue="2" itemLabel="Dependente" />
+									<f:selectItem itemValue="3" itemLabel="Semi-dependente" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="obs" value="Obs:" styleClass="outputfont" />
+								<p:inputTextarea id="obs"
+									value="#{geriatricaBean.locomocao.observacao}" required="true"
+									requiredMessage="O campo 'Obs' ´obrigatório" />
+
+							</p:panelGrid>
+						</p:fieldset>
+					</p:tab>
+
+					<p:tab title="6" titleStyleClass="tab">
+						<p:fieldset legend="Exame Físico" styleClass="fieldset">
+							<p:panelGrid columns="2" styleClass="panelGrid">
+
+								<p:outputLabel for="tonus" value="Tônus:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="tonus"
+									value="#{geriatricaBean.exame.tonus}" required="true"
+									requiredMessage="O campo 'Tônus' ´obrigatório"
+									styleClass="radiofont" columns="3" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="normotonia" />
+									<f:selectItem itemValue="2" itemLabel="hipotonia" />
+									<f:selectItem itemValue="3" itemLabel="hipertonia" />
+								</p:selectOneRadio>
+
+
+								<p:outputLabel for="trofismo" value="Trofismo:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="trofismo"
+									value="#{geriatricaBean.exame.trofismo}" required="true"
+									requiredMessage="O campo 'Trofismo' ´obrigatório"
+									styleClass="radiofont" columns="3" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="normotonia" />
+									<f:selectItem itemValue="2" itemLabel="hipotonia" />
+									<f:selectItem itemValue="3" itemLabel="hipertonia" />
+								</p:selectOneRadio>
+
+
+								<p:outputLabel for="arco" value="Arco de Movimento:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="arco"
+									value="#{geriatricaBean.exame.arcoMovimento}" required="true"
+									requiredMessage="O campo 'Arco de Movimento' ´obrigatório"
+									styleClass="radiofont" columns="3" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="ACM" />
+									<f:selectItem itemValue="2" itemLabel="AIM" />
+									<f:selectItem itemValue="3" itemLabel="Não realiza" />
+									<f:selectItem itemValue="4" itemLabel="Lado direito" />
+									<f:selectItem itemValue="5" itemLabel="Lado esquerdo" />
+								</p:selectOneRadio>
+
+							</p:panelGrid>
+						</p:fieldset>
+					</p:tab>
+
+
+					<p:tab title="7" titleStyleClass="tab">
+						<p:panelGrid columns="1" styleClass="panelGrid">
+							<p:fieldset legend="MMSS" styleClass="fieldset">
+								<p:panelGrid columns="6" styleClass="panelGrid">
+									<p:outputLabel for="escapula" value="Escápula:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="escapula"
+										value="#{geriatricaBean.exame.escapula}" required="true"
+										requiredMessage="O campo 'Escápula' ´obrigatório"
+										styleClass="radiofont" columns="2" layout="grid">
+										<f:selectItem itemValue="1" itemLabel="Móvel" />
+										<f:selectItem itemValue="2" itemLabel="Fixa" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="ombro" value="Ombros:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="ombro"
+										value="#{geriatricaBean.exame.ombros}" required="true"
+										requiredMessage="O campo 'Ombros' ´obrigatório"
+										styleClass="radiofont" columns="3" layout="grid">
+										<f:selectItem itemValue="1" itemLabel="Flexão" />
+										<f:selectItem itemValue="2" itemLabel="Abdução" />
+										<f:selectItem itemValue="3" itemLabel="Extensão" />
+										<f:selectItem itemValue="4" itemLabel="RI" />
+										<f:selectItem itemValue="5" itemLabel="RE" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="cotovelo" value="Cotovelo:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="cotovelo"
+										value="#{geriatricaBean.exame.cotovelo}" required="true"
+										requiredMessage="O campo 'Cotovelo' ´obrigatório"
+										styleClass="radiofont" columns="2" layout="grid">
+										<f:selectItem itemValue="1" itemLabel="Pronação" />
+										<f:selectItem itemValue="2" itemLabel="Supinação" />
+										<f:selectItem itemValue="3" itemLabel="Flexão" />
+										<f:selectItem itemValue="4" itemLabel="Extensão" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="punho" value="Punho:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="punho"
+										value="#{geriatricaBean.exame.punho}" required="true"
+										requiredMessage="O campo 'Punho' ´obrigatório"
+										styleClass="radiofont" columns="2" layout="grid">
+										<f:selectItem itemValue="1" itemLabel="Flexão" />
+										<f:selectItem itemValue="2" itemLabel="Extensão" />
+										<f:selectItem itemValue="3" itemLabel="Desvio ulnar" />
+										<f:selectItem itemValue="4" itemLabel="Desvio radial" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="dedos" value="Dedos:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="dedos"
+										value="#{geriatricaBean.exame.dedos}" required="true"
+										requiredMessage="O campo 'Dedos' ´obrigatório"
+										styleClass="radiofont" columns="2" layout="grid">
+										<f:selectItem itemValue="1" itemLabel="Flexão" />
+										<f:selectItem itemValue="2" itemLabel="Extensão" />
+										<f:selectItem itemValue="3" itemLabel="Adução" />
+										<f:selectItem itemValue="4" itemLabel="Abdução" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="tronco" value="Tronco:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="tronco"
+										value="#{geriatricaBean.exame.tronco}" required="true"
+										requiredMessage="O campo 'Tronco' ´obrigatório"
+										styleClass="radiofont" columns="2" layout="grid">
+										<f:selectItem itemValue="1" itemLabel="Flexão" />
+										<f:selectItem itemValue="2" itemLabel="Extensão" />
+										<f:selectItem itemValue="3" itemLabel="Inclinação" />
+										<f:selectItem itemValue="4" itemLabel="Rotação" />
+									</p:selectOneRadio>
+
+
+								</p:panelGrid>
+							</p:fieldset>
+						</p:panelGrid>
+
+					</p:tab>
+
+
+					<p:tab title="8" titleStyleClass="tab">
+
+						<p:fieldset legend="MMII" styleClass="fieldset">
+							<p:panelGrid columns="4" styleClass="panelGrid">
+
+								<p:outputLabel for="quadril" value="Quadril:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="quadril"
+									value="#{geriatricaBean.exame.quadril}" required="true"
+									requiredMessage="O campo 'Quadril' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Flexão" />
+									<f:selectItem itemValue="2" itemLabel="Abdução" />
+									<f:selectItem itemValue="3" itemLabel="Extensão" />
+									<f:selectItem itemValue="4" itemLabel="RI" />
+									<f:selectItem itemValue="5" itemLabel="RE" />
+								</p:selectOneRadio>
+
+
+								<p:outputLabel for="joelho" value="Joelho:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="joelho"
+									value="#{geriatricaBean.exame.joelho}" required="true"
+									requiredMessage="O campo 'Joelho' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Flexão" />
+									<f:selectItem itemValue="2" itemLabel="Extensão" />
+								</p:selectOneRadio>
+
+
+
+								<p:outputLabel for="tornozelo" value="Tornozelo:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="tornozelo"
+									value="#{geriatricaBean.exame.tornozelo}" required="true"
+									requiredMessage="O campo 'Tornozelo' ´obrigatório"
+									styleClass="radiofont" columns="2" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Flexão plantar" />
+									<f:selectItem itemValue="2" itemLabel="Dorsiflexão" />
+								</p:selectOneRadio>
+
+
+								<p:outputLabel for="face" value="Face:" styleClass="outputfont" />
+								<p:selectOneRadio id="face" value="#{geriatricaBean.exame.face}"
+									required="true" requiredMessage="O campo 'Face' ´obrigatório"
+									styleClass="radiofont" columns="4" layout="grid">
+									<f:selectItem itemValue="1" itemLabel="Sorri" />
+									<f:selectItem itemValue="2" itemLabel="Pisca" />
+									<f:selectItem itemValue="3" itemLabel="Franze o nariz" />
+									<f:selectItem itemValue="4" itemLabel="Assovia" />
+								</p:selectOneRadio>
+							</p:panelGrid>
+						</p:fieldset>
+
+					</p:tab>
+
+
+					<p:tab title="9" titleStyleClass="tab">
+						<p:panelGrid columns="2" styleClass="panelGrid">
+							<p:fieldset legend="Reflexos" styleClass="fieldset">
+								<p:panelGrid columns="4" styleClass="panelGrid">
+
+									<p:outputLabel for="biciptald" value="Bicptal D:"
+										styleClass="outputfont" />
+									<p:spinner id="biciptald" maxlength="5"
+										value="#{geriatricaBean.reflexos.biciptalD}" required="true"
+										requiredMessage="O campo ' Bicptal D' são obrigatório"
+										size="2" />
+
+									<p:outputLabel for="biciptald" value="Bicptal E:"
+										styleClass="outputfont" />
+									<p:spinner id="biciptale" maxlength="5"
+										value="#{geriatricaBean.reflexos.biciptalE}" required="true"
+										requiredMessage="O campo ' Bicptal E' são obrigatório"
+										size="2" />
+
+									<p:outputLabel for="triciptald" value="Tricptal D:"
+										styleClass="outputfont" />
+									<p:spinner id="triciptald" maxlength="5"
+										value="#{geriatricaBean.reflexos.triciptalD}" required="true"
+										requiredMessage="O campo ' Tricptal D' são obrigatório"
+										size="2" />
+
+									<p:outputLabel for="triciptale" value="Tricptal E:"
+										styleClass="outputfont" />
+									<p:spinner id="triciptale" maxlength="5"
+										value="#{geriatricaBean.reflexos.triciptalE}" required="true"
+										requiredMessage="O campo ' Tricptal E' são obrigatório"
+										size="2" />
+
+									<p:outputLabel for="aquileud" value="Aquileu D:"
+										styleClass="outputfont" />
+									<p:spinner id="aquileud" maxlength="5"
+										value="#{geriatricaBean.reflexos.aquileuD}" required="true"
+										requiredMessage="O campo ' Aquileu D' são obrigatório"
+										size="2" />
+
+
+									<p:outputLabel for="aquileue" value="Aquileu E:"
+										styleClass="outputfont" />
+									<p:spinner id="aquileue" maxlength="5"
+										value="#{geriatricaBean.reflexos.aquileuE}" required="true"
+										requiredMessage="O campo ' Aquileu E' são obrigatório"
+										size="2" />
+
+									<p:outputLabel for="patelard" value="Patelar D:"
+										styleClass="outputfont" />
+									<p:spinner id="patelard" maxlength="5"
+										value="#{geriatricaBean.reflexos.patelarD}" required="true"
+										requiredMessage="O campo ' Patelar D' são obrigatório"
+										size="2" />
+
+									<p:outputLabel for="patelare" value="Patelar E:"
+										styleClass="outputfont" />
+									<p:spinner id="patelare" maxlength="5"
+										value="#{geriatricaBean.reflexos.patelarE}" required="true"
+										requiredMessage="O campo ' Patelar E' são obrigatório"
+										size="2" />
+
+								</p:panelGrid>
+							</p:fieldset>
+
+							<p:fieldset legend="Sensibilidade" styleClass="fieldset">
+								<p:panelGrid columns="4" styleClass="panelGrid">
+
+									<p:outputLabel for="dolorosa" value="Dolorosa:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="dolorosa"
+										value="#{geriatricaBean.reflexos.dolorosa}" required="true"
+										requiredMessage="O campo 'Dolorosa' ´obrigatório"
+										styleClass="radiofont" columns="2" layout="grid">
+										<f:selectItem itemValue="1" itemLabel="Normal" />
+										<f:selectItem itemValue="2" itemLabel="Alterada" />
+									</p:selectOneRadio>
+
+
+									<p:outputLabel for="tatil" value="Tátil:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="tatil"
+										value="#{geriatricaBean.reflexos.tatil}" required="true"
+										requiredMessage="O campo 'Tátil' ´obrigatório"
+										styleClass="radiofont" columns="2" layout="grid">
+										<f:selectItem itemValue="1" itemLabel="Normal" />
+										<f:selectItem itemValue="2" itemLabel="Alterada" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="propioceptiva" value="Propoceptiva:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="propioceptiva"
+										value="#{geriatricaBean.reflexos.propioceptiva}"
+										required="true"
+										requiredMessage="O campo 'Propoceptiva' ´obrigatório"
+										styleClass="radiofont" columns="2" layout="grid">
+										<f:selectItem itemValue="1" itemLabel="Normal" />
+										<f:selectItem itemValue="2" itemLabel="Alterada" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="local" value="Local:"
+										styleClass="outputfont" />
+									<p:inputText id="local"
+										value="#{geriatricaBean.reflexos.local}"
+										requiredMessage="O campo 'Local' é obrigatório" size="10" />
+
+									<p:outputLabel for="tipo" value="Tipo:" styleClass="outputfont" />
+									<p:inputText id="tipo" value="#{geriatricaBean.reflexos.tipo}"
+										requiredMessage="O campo 'Tipo' é obrigatório" size="10" />
+
+									<p:outputLabel for="eva" value="Eva:" styleClass="outputfont" />
+									<p:inputText id="eva" value="#{geriatricaBean.reflexos.eva}"
+										requiredMessage="O campo 'Eva' é obrigatório" size="10" />
+
+
+								</p:panelGrid>
+							</p:fieldset>
+
+						</p:panelGrid>
+
+
+
+					</p:tab>
+
+
+					<p:tab title="10" titleStyleClass="tab">
+						<p:panelGrid columns="4">
+							<p:outputLabel for="index" value="index-index:"
+								styleClass="outputfont" />
+							<p:selectOneRadio id="index"
+								value="#{geriatricaBean.reflexos.indexIndex}" required="true"
+								requiredMessage="O campo 'Index' ´obrigatório"
+								styleClass="radiofont" columns="2" layout="grid">
+								<f:selectItem itemValue="1" itemLabel="Normal" />
+								<f:selectItem itemValue="2" itemLabel="Alterada" />
+							</p:selectOneRadio>
+
+
+							<p:outputLabel for="nariz" value="index-nariz:"
+								styleClass="outputfont" />
+							<p:selectOneRadio id="nariz"
+								value="#{geriatricaBean.reflexos.indexNariz}" required="true"
+								requiredMessage="O campo 'Nariz' ´obrigatório"
+								styleClass="radiofont" columns="2" layout="grid">
+								<f:selectItem itemValue="1" itemLabel="Normal" />
+								<f:selectItem itemValue="2" itemLabel="Alterada" />
+							</p:selectOneRadio>
+
+
+							<p:outputLabel for="sentado" value="Sentado:"
+								styleClass="outputfont" />
+							<p:selectOneRadio id="sentado"
+								value="#{geriatricaBean.reflexos.sentado}" required="true"
+								requiredMessage="O campo 'Sentado' ´obrigatório"
+								styleClass="radiofont" columns="3" layout="grid">
+								<f:selectItem itemValue="1" itemLabel="Bom" />
+								<f:selectItem itemValue="2" itemLabel="Regular" />
+								<f:selectItem itemValue="3" itemLabel="Ruim" />
+							</p:selectOneRadio>
+
+
+							<p:outputLabel for="romberg" value="Romberg:"
+								styleClass="outputfont" />
+							<p:selectOneRadio id="romberg"
+								value="#{geriatricaBean.reflexos.romberg}" required="true"
+								requiredMessage="O campo 'Romberg' ´obrigatório"
+								styleClass="radiofont" columns="3" layout="grid">
+								<f:selectItem itemValue="1" itemLabel="Bom" />
+								<f:selectItem itemValue="2" itemLabel="Regular" />
+								<f:selectItem itemValue="3" itemLabel="Ruim" />
+							</p:selectOneRadio>
+
+
+
+							<p:outputLabel for="sensibilizado" value="Romberg sensibilizado:"
+								styleClass="outputfont" />
+							<p:selectOneRadio id="sensibilizado"
+								value="#{geriatricaBean.reflexos.rombergSensibilizado}"
+								required="true"
+								requiredMessage="O campo 'Romberg sensibilizado' ´obrigatório"
+								styleClass="radiofont" columns="2" layout="grid">
+								<f:selectItem itemValue="1" itemLabel="Positivo" />
+								<f:selectItem itemValue="2" itemLabel="Negativo" />
+							</p:selectOneRadio>
+
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="11" titleStyleClass="tab">
+						<p:panelGrid columns="2">
+
+							<p:outputLabel for="retracoes" value="Retrações:"
+								styleClass="outputfont" />
+							<p:inputTextarea id="retracoes"
+								value="#{geriatricaBean.geriatrica.retracoes}"
+								requiredMessage="O campo 'Retrações' é obrigatório" />
+
+
+							<p:outputLabel for="leito" value="Paciente no Leito:"
+								styleClass="outputfont" />
+							<p:inputTextarea id="leito"
+								value="#{geriatricaBean.geriatrica.leito}"
+								requiredMessage="O campo 'Paciente no Leito' é obrigatório" />
+
+
+							<p:outputLabel for="diagnotisco" value="Diagnóstico:"
+								styleClass="outputfont" />
+							<p:inputTextarea id="diagnotisco"
+								value="#{geriatricaBean.geriatrica.diagnostico}"
+								requiredMessage="O campo 'Diagnóstico' é obrigatório" />
+
+						</p:panelGrid>
+					</p:tab>
+
+				</p:tabView>
+
+
+
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						update=":mensagem :formCadastro:painel :formListagem:tabela"
+						actionListener="#{geriatricaBean.salvar}" />
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

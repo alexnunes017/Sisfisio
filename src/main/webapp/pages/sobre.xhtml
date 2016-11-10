@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formCadastro">
+			<p:panel header="Contato" styleClass="headerfont">
+
+
+				<p:panelGrid columns="1">
+					<p:graphicImage library="images" name="eu.jpg" />
+					<h:outputLabel value="Nome:" />
+					<h:outputLabel value="Alex Nunes Jardim" />
+					<h:outputLabel value="E-mail:" />
+					<h:outputLabel value="alexnunes017@gmail.com" />
+					<h:outputLabel value="Tefelone:" />
+					<h:outputLabel value="(64)99948-7505" />
+
+				</p:panelGrid>
+			</p:panel>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

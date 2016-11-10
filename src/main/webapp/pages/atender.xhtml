@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel header="Atendimentos - Listagem" styleClass="headerfont">
+				<p:dataTable id="tabela" widgetVar="tabela"
+					emptyMessage="Nenhum registro encontrado." paginator="true"
+					value="#{tratamentoBean.consultas}" var="consulta" rows="5"
+					styleClass="tabelafont">
+					<!-- 					<f:facet name="header"> -->
+					<!-- 						<p:commandButton icon="ui-icon-plus" -->
+					<!-- 							oncomplete="PF('dialogo').show();" -->
+					<!-- 							actionListener="#{consultaBean.novo}" -->
+					<!-- 							update=":mensagem :formCadastro:painel"> -->
+					<!-- 							<f:actionListener -->
+					<!-- 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" /> -->
+					<!-- 						</p:commandButton> -->
+					<!-- 					</f:facet> -->
+
+					<p:column headerText="Data" sortBy="#{consulta.dataFormatada}"
+						filterBy="#{consulta.data}">
+						<h:outputText value="#{consulta.dataFormatada}" />
+					</p:column>
+
+					<p:column headerText="Hora" sortBy="#{consulta.hora}"
+						filterBy="#{consulta.hora}">
+						<h:outputText value="#{consulta.hora}" />
+					</p:column>
+
+					<p:column headerText="Paciente" sortBy="#{consulta.pessoa.nome}"
+						filterBy="#{consulta.pessoa.nome}">
+						<h:outputText value="#{consulta.pessoa.nome}" />
+					</p:column>
+
+
+
+					<p:column headerText="Status" sortBy="#{consulta.statusFormatado}"
+						filterBy="#{consulta.status}">
+						<f:facet name="filter">
+							<p:selectOneMenu onchange="PF('tabela').filter()">
+								<f:selectItem itemValue="" itemLabel="Todos" />
+								<f:selectItem itemValue="M" itemLabel="Marcada" />
+								<f:selectItem itemValue="C" itemLabel="Cancelada" />
+								<f:selectItem itemValue="R" itemLabel="Realizada" />
+							</p:selectOneMenu>
+						</f:facet>
+						<h:outputText value="#{consulta.statusFormatado}" />
+					</p:column>
+
+					<p:column headerText="Fisioterapeuta"
+						sortBy="#{consulta.fisioterapeuta.pessoa.nome}"
+						filterBy="#{consulta.fisioterapeuta.pessoa.nome}">
+						<h:outputText value="#{consulta.fisioterapeuta.pessoa.nome}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{tratamentoBean.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-close"
+							actionListener="#{tratamentoBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir a consulta" icon="ui-icon-alert" />
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+						</p:commandButton>
+
+
+					</p:column>
+				</p:dataTable>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Consultas - Cadastro" widgetVar="dialogo"
+			draggable="false" resizable="false" modal="true" closable="false">
+			<h:form id="formCadastro">
+				<h:panelGrid id="painel" columns="2">
+
+					<p:outputLabel value="Diagnóstico:" />
+					<p:inputTextarea size="30" maxlength="100"
+						value="#{tratamentoBean.consulta.diagnostico}" />
+
+					<p:outputLabel value="Tratamento:" />
+					<p:inputTextarea size="30" maxlength="100"
+						value="#{tratamentoBean.consulta.tratamento}" />
+
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						update=":mensagem :formCadastro:painel :formListagem:tabela"
+						actionListener="#{tratamentoBean.salvar}" />
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

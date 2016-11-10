@@ -1,0 +1,1045 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel header="Avaliações- Listagem" styleClass="headerfont">
+				<p:dataTable id="tabela" widgetVar="tabela"
+					emptyMessage="Nenhum registro encontrado." paginator="true"
+					value="#{neurologicaBean.consultas}" var="consulta" rows="5"
+					styleClass="tabelafont">
+					<!-- 					<f:facet name="header"> -->
+					<!-- 						<p:commandButton icon="ui-icon-document" -->
+					<!-- 							oncomplete="PF('dialogo').show();" -->
+					<!-- 							actionListener="#{traumatologicaBean.novo}" -->
+					<!-- 							update=":mensagem :formCadastro:painel"> -->
+					<!-- 							<f:actionListener -->
+					<!-- 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" /> -->
+					<!-- 						</p:commandButton> -->
+					<!-- 					</f:facet> -->
+
+					<p:column style="width:16px">
+						<p:rowToggler />
+					</p:column>
+
+					<p:column headerText="Data" sortBy="#{consulta.dataFormatada}"
+						filterBy="#{consulta.data}">
+						<h:outputText value="#{consulta.dataFormatada}" />
+					</p:column>
+
+					<p:column headerText="Hora" sortBy="#{consulta.hora}"
+						filterBy="#{consulta.hora}">
+						<h:outputText value="#{consulta.hora}" />
+					</p:column>
+
+					<p:column headerText="Paciente" sortBy="#{consulta.pessoa.nome}"
+						filterBy="#{consulta.pessoa.nome}">
+						<h:outputText value="#{consulta.pessoa.nome}" />
+					</p:column>
+
+
+					<p:column headerText="Status" sortBy="#{consulta.statusFormatado}"
+						filterBy="#{consulta.status}">
+						<f:facet name="filter">
+							<p:selectOneMenu onchange="PF('tabela').filter()">
+								<f:selectItem itemValue="" itemLabel="Todos" />
+								<f:selectItem itemValue="M" itemLabel="Marcada" />
+								<f:selectItem itemValue="C" itemLabel="Cancelada" />
+								<f:selectItem itemValue="R" itemLabel="Realizada" />
+							</p:selectOneMenu>
+						</f:facet>
+						<h:outputText value="#{consulta.statusFormatado}" />
+					</p:column>
+
+					<p:column headerText="Fisioterapeuta"
+						sortBy="#{consulta.fisioterapeuta.pessoa.nome}"
+						filterBy="#{consulta.fisioterapeuta.pessoa.nome}">
+						<h:outputText value="#{consulta.fisioterapeuta.pessoa.nome}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-plus	"
+							actionListener="#{neurologicaBean.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-cancel"
+							actionListener="#{neurologicaBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir a consulta" icon="ui-icon-alert" />
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+						</p:commandButton>
+
+
+					</p:column>
+					<p:rowExpansion>
+						<p:dataTable emptyMessage="Nenhum registro encontrado"
+							value="#{consulta.neurologicas}" var="neurologica"
+							styleClass="tabelafont">
+
+							<p:column headerText="qp">
+								<h:outputText value="#{neurologica.qp}" />
+							</p:column>
+							<p:column headerText="hpma">
+								<h:outputText value="#{neurologica.hpma}" />
+							</p:column>
+							<p:column headerText="exames complementares">
+								<h:outputText value="#{neurologica.examesComplemetares}" />
+							</p:column>
+
+
+
+						</p:dataTable>
+					</p:rowExpansion>
+
+				</p:dataTable>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Avaliação" widgetVar="dialogo" draggable="false"
+			resizable="false" modal="true" closable="false" dynamic="true">
+			<h:form id="formCadastro">
+
+				<p:tabView id="painel" styleClass="tabview">
+					<p:tab title="1" titleStyleClass="tab">
+						<p:panelGrid columns="4">
+							<p:outputLabel for="qp" value="Qp:" styleClass="outputfont" />
+							<p:inputText id="qp" maxlength="50" size="30"
+								value="#{neurologicaBean.neurologica.qp}" required="true"
+								requiredMessage="O campo 'Qp' é obrigatório" />
+
+							<p:outputLabel for="hpma" value="Hpma:" styleClass="outputfont" />
+							<p:inputText id="hpma" maxlength="50" size="30"
+								value="#{neurologicaBean.neurologica.hpma}" required="true"
+								requiredMessage="O campo 'Hpma' é obrigatório" />
+
+							<p:outputLabel for="af" value="AF:" styleClass="outputfont" />
+							<p:inputText id="af" maxlength="50" size="30"
+								value="#{neurologicaBean.neurologica.af}" required="true"
+								requiredMessage="O campo 'AF' são obrigatório" />
+
+							<p:outputLabel for="pa" value="PA:" styleClass="outputfont" />
+							<p:inputText id="pa" maxlength="50" size="30"
+								value="#{neurologicaBean.neurologica.pa}" required="true"
+								requiredMessage="O campo 'PA' são obrigatório" />
+
+
+
+							<p:outputLabel for="fc" value="FC:" styleClass="outputfont" />
+							<p:inputText id="fc" maxlength="50" size="30"
+								value="#{neurologicaBean.neurologica.fc}" required="true"
+								requiredMessage="O campo 'FC' são obrigatório" />
+
+
+							<p:outputLabel for="fr" value="FR:" styleClass="outputfont" />
+							<p:inputText id="fr" maxlength="50" size="30"
+								value="#{neurologicaBean.neurologica.fr}" required="true"
+								requiredMessage="O campo 'FR' são obrigatório" />
+
+							<p:outputLabel for="dor" value="Dor:" styleClass="outputfont" />
+							<p:inputText id="dor" maxlength="50" size="30"
+								value="#{neurologicaBean.neurologica.dor}" required="true"
+								requiredMessage="O campo 'Dor' são obrigatório" />
+
+							<p:outputLabel for="eva" value="Eva:" styleClass="outputfont" />
+							<p:inputText id="eva" maxlength="50" size="30"
+								value="#{neurologicaBean.neurologica.eva}" required="true"
+								requiredMessage="O campo 'Eva' são obrigatório" />
+
+
+
+
+							<p:outputLabel for="tonus" value="Tônus:" styleClass="outputfont" />
+							<p:selectOneRadio id="tonus"
+								value="#{neurologicaBean.tonus.tonus}" required="true"
+								requiredMessage="O campo 'Tônus' ´obrigatório"
+								styleClass="radiofont">
+								<f:selectItem itemValue="1" itemLabel="Hipotrofismo" />
+								<f:selectItem itemValue="2" itemLabel="Hipertrofismo" />
+								<f:selectItem itemValue="3" itemLabel="Normotrofismo" />
+							</p:selectOneRadio>
+
+							<p:outputLabel for="adm" value="ADM:" styleClass="outputfont" />
+							<p:inputTextarea id="adm" maxlength="50" size="30"
+								value="#{neurologicaBean.tonus.adm}" required="true"
+								requiredMessage="O campo 'Diagnostico' é obrigatório" />
+
+
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="2" titleStyleClass="tab">
+						<p:fieldset legend="Reflexos Profudos" styleClass="fieldset">
+
+							<p:panelGrid columns="4" styleClass="panelGrid">
+								<p:outputLabel for="rfbicptald" value="Bicptal Direito:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="rfbicptald"
+									value="#{neurologicaBean.tonus.biciptalD}" required="true"
+									requiredMessage="O campo 'Bicptal Direito' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Arref" />
+									<f:selectItem itemValue="2" itemLabel="Hipo" />
+									<f:selectItem itemValue="3" itemLabel="Hiper" />
+									<f:selectItem itemValue="4" itemLabel="NI" />
+								</p:selectOneRadio>
+
+
+								<p:outputLabel for="rfbicptale" value="Bicptal Esquerdo:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="rfbicptale"
+									value="#{neurologicaBean.tonus.biciptalE}" required="true"
+									requiredMessage="O campo 'Bicptal Esquerdo' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Arref" />
+									<f:selectItem itemValue="2" itemLabel="Hipo" />
+									<f:selectItem itemValue="3" itemLabel="Hiper" />
+									<f:selectItem itemValue="4" itemLabel="NI" />
+								</p:selectOneRadio>
+
+
+								<p:outputLabel for="rftricptald" value="Tricptal Direito:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="rftricptald"
+									value="#{neurologicaBean.tonus.triciptalD}" required="true"
+									requiredMessage="O campo 'Tricptal Direito' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Arref" />
+									<f:selectItem itemValue="2" itemLabel="Hipo" />
+									<f:selectItem itemValue="3" itemLabel="Hiper" />
+									<f:selectItem itemValue="4" itemLabel="NI" />
+								</p:selectOneRadio>
+
+
+								<p:outputLabel for="rftricptale" value="Tricptal Esquerdo:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="rftricptale"
+									value="#{neurologicaBean.tonus.triciptalE}" required="true"
+									requiredMessage="O campo 'Tricptal Esquerdo' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Arref" />
+									<f:selectItem itemValue="2" itemLabel="Hipo" />
+									<f:selectItem itemValue="3" itemLabel="Hiper" />
+									<f:selectItem itemValue="4" itemLabel="NI" />
+								</p:selectOneRadio>
+
+
+
+								<p:outputLabel for="rfpatelard" value="Patelar Direito:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="rfpatelard"
+									value="#{neurologicaBean.tonus.patelarD}" required="true"
+									requiredMessage="O campo 'Patelar Direito' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Arref" />
+									<f:selectItem itemValue="2" itemLabel="Hipo" />
+									<f:selectItem itemValue="3" itemLabel="Hiper" />
+									<f:selectItem itemValue="4" itemLabel="NI" />
+								</p:selectOneRadio>
+
+
+								<p:outputLabel for="rfpatelare" value="Patelar Esquerdo:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="rfpatelare"
+									value="#{neurologicaBean.tonus.patelarE}" required="true"
+									requiredMessage="O campo 'Patelar Esquerdo' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Arref" />
+									<f:selectItem itemValue="2" itemLabel="Hipo" />
+									<f:selectItem itemValue="3" itemLabel="Hiper" />
+									<f:selectItem itemValue="4" itemLabel="NI" />
+								</p:selectOneRadio>
+
+
+
+
+								<p:outputLabel for="rfaquileud" value="Aquileu Direito:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="rfaquileud"
+									value="#{neurologicaBean.tonus.aquileuD}" required="true"
+									requiredMessage="O campo 'Aquileu Direito' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Arref" />
+									<f:selectItem itemValue="2" itemLabel="Hipo" />
+									<f:selectItem itemValue="3" itemLabel="Hiper" />
+									<f:selectItem itemValue="4" itemLabel="NI" />
+								</p:selectOneRadio>
+
+
+								<p:outputLabel for="rfaquileue" value="Aquileu Esquerdo:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="rfaquileue"
+									value="#{neurologicaBean.tonus.aquileuE}" required="true"
+									requiredMessage="O campo 'Aquileu Esquerdo' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Arref" />
+									<f:selectItem itemValue="2" itemLabel="Hipo" />
+									<f:selectItem itemValue="3" itemLabel="Hiper" />
+									<f:selectItem itemValue="4" itemLabel="NI" />
+								</p:selectOneRadio>
+							</p:panelGrid>
+						</p:fieldset>
+
+						<p:panelGrid columns="2" styleClass="panelGrid">
+
+							<p:fieldset legend="Reflexos Superficiais" styleClass="fieldset">
+								<p:panelGrid columns="2">
+									<p:outputLabel for="rfscutaneoD" value="Cutâneo planar D:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="rfscutaneoD"
+										value="#{neurologicaBean.tonus.cutaneoPlanarD}"
+										required="true"
+										requiredMessage="O campo 'Cutâneo planar Direito' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Arre" />
+										<f:selectItem itemValue="2" itemLabel="FL" />
+										<f:selectItem itemValue="3" itemLabel="EX" />
+									</p:selectOneRadio>
+									<p:outputLabel for="rfscutaneoE" value="Cutâneo planar E:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="rfscutaneoE"
+										value="#{neurologicaBean.tonus.cutaneoPlanarE}"
+										required="true"
+										requiredMessage="O campo 'Cutâneo planar Esquerdo' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Arre" />
+										<f:selectItem itemValue="2" itemLabel="FL" />
+										<f:selectItem itemValue="3" itemLabel="EX" />
+									</p:selectOneRadio>
+
+								</p:panelGrid>
+							</p:fieldset>
+							<p:fieldset legend="Escala de Ashworth" styleClass="fieldset">
+								<p:panelGrid columns="4" styleClass="panelGrid">
+									<p:outputLabel for="escalaMsd" value="MSD:"
+										styleClass="outputfont" />
+									<p:spinner id="escalaMsd" max="5" min="0" maxlength="1"
+										value="#{neurologicaBean.tonus.escalaMsd}" required="true"
+										requiredMessage="O campo ' MSD' são obrigatório" size="2" />
+
+									<p:outputLabel for="escalaMse" value="MDE:"
+										styleClass="outputfont" />
+									<p:spinner id="escalaMse" max="5" min="0" maxlength="1"
+										value="#{neurologicaBean.tonus.escalaMse}" required="true"
+										requiredMessage="O campo ' MSE' são obrigatório" size="2" />
+
+									<p:outputLabel for="escalaMid" value="MID:"
+										styleClass="outputfont" />
+									<p:spinner id="escalaMid" max="5" min="0" maxlength="1"
+										value="#{neurologicaBean.tonus.escalaMid}" required="true"
+										requiredMessage="O campo ' MID' são obrigatório" size="2" />
+
+									<p:outputLabel for="escalaMie" value="MIE:"
+										styleClass="outputfont" />
+									<p:spinner id="escalaMie" max="5" min="0" maxlength="1"
+										value="#{neurologicaBean.tonus.escalaMie}" required="true"
+										requiredMessage="O campo ' MIE' são obrigatório" size="2" />
+								</p:panelGrid>
+							</p:fieldset>
+
+						</p:panelGrid>
+					</p:tab>
+
+					<p:tab title="3" titleStyleClass="tab">
+						<p:fieldset legend="Movimentos Voluntários" styleClass="fieldset">
+							<p:panelGrid columns="2" styleClass="panelGrid">
+								<p:outputLabel for="mvmsd" value="MSD:" styleClass="outputfont" />
+								<p:selectOneRadio id="mvmsd"
+									value="#{neurologicaBean.tonus.movimentoMsd}" required="true"
+									requiredMessage="O campo 'MSD' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Ausente" />
+									<f:selectItem itemValue="2" itemLabel="Padrão Flexor" />
+									<f:selectItem itemValue="3" itemLabel="Fraqueza" />
+									<f:selectItem itemValue="4" itemLabel="Incoordenação" />
+									<f:selectItem itemValue="5" itemLabel="Bradicinisia" />
+									<f:selectItem itemValue="6" itemLabel="NI" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="mvmse" value="MSE:" styleClass="outputfont" />
+								<p:selectOneRadio id="mvmse"
+									value="#{neurologicaBean.tonus.movimentoMse}" required="true"
+									requiredMessage="O campo 'MSE' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Ausente" />
+									<f:selectItem itemValue="2" itemLabel="Padrão Flexor" />
+									<f:selectItem itemValue="3" itemLabel="Fraqueza" />
+									<f:selectItem itemValue="4" itemLabel="Incoordenação" />
+									<f:selectItem itemValue="5" itemLabel="Bradicinisia" />
+									<f:selectItem itemValue="6" itemLabel="NI" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="mvmid" value="MID:" styleClass="outputfont" />
+								<p:selectOneRadio id="mvmid"
+									value="#{neurologicaBean.tonus.movimentoMid}" required="true"
+									requiredMessage="O campo 'MID' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Ausente" />
+									<f:selectItem itemValue="2" itemLabel="Padrão Flexor" />
+									<f:selectItem itemValue="3" itemLabel="Fraqueza" />
+									<f:selectItem itemValue="4" itemLabel="Incoordenação" />
+									<f:selectItem itemValue="5" itemLabel="Bradicinisia" />
+									<f:selectItem itemValue="6" itemLabel="NI" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="mvmie" value="MIE:" styleClass="outputfont" />
+								<p:selectOneRadio id="mvmie"
+									value="#{neurologicaBean.tonus.movimentoMie}" required="true"
+									requiredMessage="O campo 'MIE' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Ausente" />
+									<f:selectItem itemValue="2" itemLabel="Padrão Flexor" />
+									<f:selectItem itemValue="3" itemLabel="Fraqueza" />
+									<f:selectItem itemValue="4" itemLabel="Incoordenação" />
+									<f:selectItem itemValue="5" itemLabel="Bradicinisia" />
+									<f:selectItem itemValue="6" itemLabel="NI" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="mvpincaD" value="Pinça Fina D:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="mvpincaD"
+									value="#{neurologicaBean.tonus.pincaFinaD}" required="true"
+									requiredMessage="O campo 'Pinça Fina D' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Ausente" />
+									<f:selectItem itemValue="2" itemLabel="Padrão Flexor" />
+									<f:selectItem itemValue="3" itemLabel="Fraqueza" />
+									<f:selectItem itemValue="4" itemLabel="Incoordenação" />
+									<f:selectItem itemValue="5" itemLabel="Bradicinisia" />
+									<f:selectItem itemValue="6" itemLabel="NI" />
+								</p:selectOneRadio>
+
+								<p:outputLabel for="mvpincaE" value="Pinça Fina E:"
+									styleClass="outputfont" />
+								<p:selectOneRadio id="mvpincaE"
+									value="#{neurologicaBean.tonus.pincaFinaE}" required="true"
+									requiredMessage="O campo 'Pinça Fina E' obrigatório"
+									styleClass="radiofont">
+									<f:selectItem itemValue="1" itemLabel="Ausente" />
+									<f:selectItem itemValue="2" itemLabel="Padrão Flexor" />
+									<f:selectItem itemValue="3" itemLabel="Fraqueza" />
+									<f:selectItem itemValue="4" itemLabel="Incoordenação" />
+									<f:selectItem itemValue="5" itemLabel="Bradicinisia" />
+									<f:selectItem itemValue="6" itemLabel="NI" />
+								</p:selectOneRadio>
+
+							</p:panelGrid>
+						</p:fieldset>
+					</p:tab>
+
+					<p:tab title="4" titleStyleClass="tab">
+
+						<p:panelGrid columns="2" styleClass="panelGrid">
+
+							<p:fieldset legend="Atividades Funcionais" styleClass="fieldset">
+								<p:panelGrid columns="2" styleClass="panelGrid">
+
+									<p:outputLabel for="ddDld" value="DD/DLD:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="ddDld"
+										value="#{neurologicaBean.tonus.ddDld}" required="true"
+										requiredMessage="O campo 'DD/DLD' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Não passa" />
+										<f:selectItem itemValue="2" itemLabel="Passa com dificuldade" />
+										<f:selectItem itemValue="3" itemLabel="Independente" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="ddDle" value="DD/DLE:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="ddDle"
+										value="#{neurologicaBean.tonus.ddDle}" required="true"
+										requiredMessage="O campo 'DD/DLE' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Não passa" />
+										<f:selectItem itemValue="2" itemLabel="Passa com dificuldade" />
+										<f:selectItem itemValue="3" itemLabel="Independente" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="ddDv" value="DD/DV:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="ddDv"
+										value="#{neurologicaBean.tonus.ddDv}" required="true"
+										requiredMessage="O campo 'DD/DV' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Não passa" />
+										<f:selectItem itemValue="2" itemLabel="Passa com dificuldade" />
+										<f:selectItem itemValue="3" itemLabel="Independente" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="ddSentado" value="DD/Sentado:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="ddSentado"
+										value="#{neurologicaBean.tonus.ddSentado}" required="true"
+										requiredMessage="O campo 'DD/Sentado' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Não passa" />
+										<f:selectItem itemValue="2" itemLabel="Passa com dificuldade" />
+										<f:selectItem itemValue="3" itemLabel="Independente" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="ddGato" value="DD/Gato:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="ddGato"
+										value="#{neurologicaBean.tonus.ddGato}" required="true"
+										requiredMessage="O campo 'DD/Gato' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Não passa" />
+										<f:selectItem itemValue="2" itemLabel="Passa com dificuldade" />
+										<f:selectItem itemValue="3" itemLabel="Independente" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="gatoAjoelhado" value="Gato/Ajoelhado:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="gatoAjoelhado"
+										value="#{neurologicaBean.tonus.gatoAjoelhado}" required="true"
+										requiredMessage="O campo 'Gato/Ajoelhado' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Não passa" />
+										<f:selectItem itemValue="2" itemLabel="Passa com dificuldade" />
+										<f:selectItem itemValue="3" itemLabel="Independente" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="ajoelhadoSemi" value="Ajoelhado/Semi:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="ajoelhadoSemi"
+										value="#{neurologicaBean.tonus.ajoelhadoSemi}" required="true"
+										requiredMessage="O campo 'Ajoelhado/Semi' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Não passa" />
+										<f:selectItem itemValue="2" itemLabel="Passa com dificuldade" />
+										<f:selectItem itemValue="3" itemLabel="Independente" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="semiEmpe" value="Semi/Em pé:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="semiEmpe"
+										value="#{neurologicaBean.tonus.semiEmpe}" required="true"
+										requiredMessage="O campo 'Semi/Em pé' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Não passa" />
+										<f:selectItem itemValue="2" itemLabel="Passa com dificuldade" />
+										<f:selectItem itemValue="3" itemLabel="Independente" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="sentadoEmpe" value="Sentado/Em pé:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="sentadoEmpe"
+										value="#{neurologicaBean.tonus.sentadoEmpe}" required="true"
+										requiredMessage="O campo 'Sentado/Em pé' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Não passa" />
+										<f:selectItem itemValue="2" itemLabel="Passa com dificuldade" />
+										<f:selectItem itemValue="3" itemLabel="Independente" />
+									</p:selectOneRadio>
+
+								</p:panelGrid>
+							</p:fieldset>
+						</p:panelGrid>
+					</p:tab>
+
+
+
+
+					<p:tab title="5" titleStyleClass="tab">
+
+						<p:panelGrid columns="2" styleClass="panelGrid">
+
+							<p:fieldset legend="Sensibilidade Superficial - Tátil"
+								styleClass="fieldset">
+								<p:panelGrid columns="2" styleClass="panelGrid">
+
+
+									<p:outputLabel for="seMSD" value="MSD:" styleClass="outputfont" />
+									<p:selectOneRadio id="seMSD"
+										value="#{neurologicaBean.tonus.sensibilidadeMsd}"
+										required="true" requiredMessage="O campo 'MSD' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Anestesia" />
+										<f:selectItem itemValue="2" itemLabel="Hipoestesia" />
+										<f:selectItem itemValue="3" itemLabel="Hiperestesia" />
+										<f:selectItem itemValue="4" itemLabel="Normoestesia" />
+									</p:selectOneRadio>
+
+
+									<p:outputLabel for="seMSE" value="MSE:" styleClass="outputfont" />
+									<p:selectOneRadio id="seMSE"
+										value="#{neurologicaBean.tonus.sensibilidadeMse}"
+										required="true" requiredMessage="O campo 'MSD' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Anestesia" />
+										<f:selectItem itemValue="2" itemLabel="Hipoestesia" />
+										<f:selectItem itemValue="3" itemLabel="Hiperestesia" />
+										<f:selectItem itemValue="4" itemLabel="Normoestesia" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="seMID" value="MID:" styleClass="outputfont" />
+									<p:selectOneRadio id="seMID"
+										value="#{neurologicaBean.tonus.sensibilidadeMid}"
+										required="true" requiredMessage="O campo 'MID' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Anestesia" />
+										<f:selectItem itemValue="2" itemLabel="Hipoestesia" />
+										<f:selectItem itemValue="3" itemLabel="Hiperestesia" />
+										<f:selectItem itemValue="4" itemLabel="Normoestesia" />
+									</p:selectOneRadio>
+
+
+
+									<p:outputLabel for="seMIE" value="MIE:" styleClass="outputfont" />
+									<p:selectOneRadio id="seMIE"
+										value="#{neurologicaBean.tonus.sensibilidadeMie}"
+										required="true" requiredMessage="O campo 'MIE' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Anestesia" />
+										<f:selectItem itemValue="2" itemLabel="Hipoestesia" />
+										<f:selectItem itemValue="3" itemLabel="Hiperestesia" />
+										<f:selectItem itemValue="4" itemLabel="Normoestesia" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="seTD" value="Tronco D:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="seTD"
+										value="#{neurologicaBean.tonus.sensibilidadetroncoD}"
+										required="true" requiredMessage="O campo 'Tronco' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Anestesia" />
+										<f:selectItem itemValue="2" itemLabel="Hipoestesia" />
+										<f:selectItem itemValue="3" itemLabel="Hiperestesia" />
+										<f:selectItem itemValue="4" itemLabel="Normoestesia" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="seTE" value="Tronco E:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="seTE"
+										value="#{neurologicaBean.tonus.sensibilidadetroncoE}"
+										required="true"
+										requiredMessage="O campo 'Tronco E' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Anestesia" />
+										<f:selectItem itemValue="2" itemLabel="Hipoestesia" />
+										<f:selectItem itemValue="3" itemLabel="Hiperestesia" />
+										<f:selectItem itemValue="4" itemLabel="Normoestesia" />
+									</p:selectOneRadio>
+
+								</p:panelGrid>
+
+							</p:fieldset>
+							<p:fieldset legend="Tronco" styleClass="fieldset">
+								<p:panelGrid columns="2">
+									<p:outputLabel for="tronco" value="Tronco:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="tronco"
+										value="#{neurologicaBean.tonus.sensibilidadeEtronco}"
+										required="true" requiredMessage="O campo 'Tronco' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Bom" />
+										<f:selectItem itemValue="2" itemLabel="Regular" />
+										<f:selectItem itemValue="3" itemLabel="Ruim" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="romberg" value="Romberg:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="romberg"
+										value="#{neurologicaBean.tonus.sensibilidadeEromberg}"
+										required="true"
+										requiredMessage="O campo 'Romberg' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Positivo" />
+										<f:selectItem itemValue="2" itemLabel="Negativo" />
+									</p:selectOneRadio>
+								</p:panelGrid>
+							</p:fieldset>
+
+						</p:panelGrid>
+					</p:tab>
+
+
+
+					<p:tab title="6" titleStyleClass="tab">
+
+						<p:fieldset legend="Sensibilidade Profunda - Cinética Postural"
+							styleClass="fieldset">
+							<p:panelGrid columns="2" styleClass="panelGrid">
+
+								<p:panel header="MSD" styleClass="fieldset">
+									<p:panelGrid columns="2">
+
+										<p:outputLabel for="msdpolegar" value="Polegar:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="msdpolegar"
+											value="#{neurologicaBean.profunda.msdPolegar}"
+											required="true"
+											requiredMessage="O campo 'Polegar' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="msdpunho" value="Punho:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="msdpunho"
+											value="#{neurologicaBean.profunda.msdPunho}" required="true"
+											requiredMessage="O campo 'Punho' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="msdcotovelo" value="Cotovelo:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="msdcotovelo"
+											value="#{neurologicaBean.profunda.msdCotovelo}"
+											required="true"
+											requiredMessage="O campo 'Cotovelo' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="msdombro" value="Ombro:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="msdombro"
+											value="#{neurologicaBean.profunda.msdOmbro}" required="true"
+											requiredMessage="O campo 'Ombro' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+									</p:panelGrid>
+								</p:panel>
+
+
+
+								<p:panel header="MID" styleClass="fieldset">
+									<p:panelGrid columns="2">
+
+										<p:outputLabel for="midhalux" value="Hálux:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="midhalux"
+											value="#{neurologicaBean.profunda.midHalux}" required="true"
+											requiredMessage="O campo 'Hálux' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="midtornozelo" value="Tornozelo:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="midtornozelo"
+											value="#{neurologicaBean.profunda.midTornozelo}"
+											required="true"
+											requiredMessage="O campo 'Tornozelo' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="midjoelho" value="Joelho:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="midjoelho"
+											value="#{neurologicaBean.profunda.midJoelho}" required="true"
+											requiredMessage="O campo 'Joelho' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="midquadril" value="Quadril:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="midquadril"
+											value="#{neurologicaBean.profunda.midQuadril}"
+											required="true"
+											requiredMessage="O campo 'Quadril' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+									</p:panelGrid>
+								</p:panel>
+
+								<p:panel header="MSE" styleClass="fieldset">
+									<p:panelGrid columns="2">
+
+										<p:outputLabel for="msepolegar" value="Polegar:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="msepolegar"
+											value="#{neurologicaBean.profunda.msePolegar}"
+											required="true"
+											requiredMessage="O campo 'Polegar' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="msepunho" value="Punho:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="msepunho"
+											value="#{neurologicaBean.profunda.msePunho}" required="true"
+											requiredMessage="O campo 'Punho' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="msecotovelo" value="Cotovelo:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="msecotovelo"
+											value="#{neurologicaBean.profunda.mseCotovelo}"
+											required="true"
+											requiredMessage="O campo 'Cotovelo' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="mseombro" value="Ombro:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="mseombro"
+											value="#{neurologicaBean.profunda.mseOmbro}" required="true"
+											requiredMessage="O campo 'Ombro' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+									</p:panelGrid>
+								</p:panel>
+
+
+
+								<p:panel header="MIE" styleClass="fieldset">
+									<p:panelGrid columns="2">
+
+										<p:outputLabel for="miehalux" value="Hálux:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="miehalux"
+											value="#{neurologicaBean.profunda.mieHalux}" required="true"
+											requiredMessage="O campo 'Hálux' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="mietornozelo" value="Tornozelo:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="mietornozelo"
+											value="#{neurologicaBean.profunda.mieTornozelo}"
+											required="true"
+											requiredMessage="O campo 'Tornozelo' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="miejoelho" value="Joelho:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="miejoelho"
+											value="#{neurologicaBean.profunda.mieJoelho}" required="true"
+											requiredMessage="O campo 'Joelho' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+
+										<p:outputLabel for="miequadril" value="Quadril:"
+											styleClass="outputfont" />
+										<p:selectOneRadio id="miequadril"
+											value="#{neurologicaBean.profunda.mieQuadril}"
+											required="true"
+											requiredMessage="O campo 'Quadril' obrigatório"
+											styleClass="radiofont">
+											<f:selectItem itemValue="1" itemLabel="Anestesia" />
+											<f:selectItem itemValue="2" itemLabel="Normoestesia" />
+										</p:selectOneRadio>
+									</p:panelGrid>
+								</p:panel>
+
+							</p:panelGrid>
+						</p:fieldset>
+
+					</p:tab>
+
+					<p:tab title="7" titleStyleClass="tab">
+						<p:panelGrid columns="2" styleClass="panelGrid">
+
+							<p:fieldset legend="Tronco" styleClass="fieldset">
+								<p:panelGrid columns="2" styleClass="panelGrid">
+									<p:outputLabel for="troncoP" value="Tronco:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="troncoP"
+										value="#{neurologicaBean.profunda.profundaTronco}"
+										required="true" requiredMessage="O campo 'Tronco' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Bom" />
+										<f:selectItem itemValue="2" itemLabel="Regular" />
+										<f:selectItem itemValue="3" itemLabel="Ruim" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="rombergP" value="Romberg:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="rombergP"
+										value="#{neurologicaBean.profunda.profundaRomberg}"
+										required="true"
+										requiredMessage="O campo 'Romberg' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Positivo" />
+										<f:selectItem itemValue="2" itemLabel="Negativo" />
+									</p:selectOneRadio>
+
+									<p:outputLabel for="marchaP" value="Marcha:"
+										styleClass="outputfont" />
+									<p:selectOneRadio id="marchaP"
+										value="#{neurologicaBean.tonus.marcha}" required="true"
+										requiredMessage="O campo 'Marcha' obrigatório"
+										styleClass="radiofont">
+										<f:selectItem itemValue="1" itemLabel="Sim" />
+										<f:selectItem itemValue="2" itemLabel="Não" />
+									</p:selectOneRadio>
+
+								</p:panelGrid>
+							</p:fieldset>
+
+							<p:panelGrid columns="1">
+								<p:outputLabel for="obs" value="Observação:" />
+								<p:inputTextarea id="obs" maxlength="50" size="30"
+									value="#{neurologicaBean.tonus.obs}" required="true"
+									requiredMessage="O campo 'Observação' é obrigatório" />
+							</p:panelGrid>
+
+
+
+						</p:panelGrid>
+					</p:tab>
+
+
+					<p:tab title="8" titleStyleClass="tab">
+
+						<p:fieldset legend="Índice de Barthel" styleClass="fieldset">
+							<p:panelGrid columns="4" styleClass="panelGrid">
+
+								<p:outputLabel for="alimentacao" value="Alimentação:"
+									styleClass="outputfont" />
+								<p:spinner id="alimentacao" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.alimentacao}" required="true"
+									requiredMessage="O campo ' Alimentação' são obrigatório"
+									size="2" />
+
+
+								<p:outputLabel for="asseio" value="Asseio:"
+									styleClass="outputfont" />
+								<p:spinner id="asseio" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.asseio}" required="true"
+									requiredMessage="O campo ' Asseio' são obrigatório" size="2" />
+
+
+								<p:outputLabel for="evacuacao" value="Evacuação:"
+									styleClass="outputfont" />
+								<p:spinner id="evacuacao" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.evacuacao}" required="true"
+									requiredMessage="O campo 'Evacuação' são obrigatório" size="2" />
+
+
+								<p:outputLabel for="miccao" value="Micção:"
+									styleClass="outputfont" />
+								<p:spinner id="miccao" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.miccao}" required="true"
+									requiredMessage="O campo ' Micção' são obrigatório" size="2" />
+
+
+								<p:outputLabel for="vestir" value="Vestir-se:"
+									styleClass="outputfont" />
+								<p:spinner id="vestir" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.vestir}" required="true"
+									requiredMessage="O campo ' Vestir-se' são obrigatório" size="2" />
+
+								<p:outputLabel for="tranfer" value="Transfer.Cadeira/Cama:"
+									styleClass="outputfont" />
+								<p:spinner id="tranfer" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.tranferencia}" required="true"
+									requiredMessage="O campo ' Transfer.Cadeira/Cama' são obrigatório"
+									size="2" />
+
+
+								<p:outputLabel for="toalet" value="Toalet:"
+									styleClass="outputfont" />
+								<p:spinner id="toalet" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.toalet}" required="true"
+									requiredMessage="O campo ' toalet ' são obrigatório" size="2" />
+
+
+								<p:outputLabel for="mobilidade" value="Mobilidade:"
+									styleClass="outputfont" />
+								<p:spinner id="mobilidade" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.mobilidade}" required="true"
+									requiredMessage="O campo ' Mobilidade ' são obrigatório"
+									size="2" />
+
+
+								<p:outputLabel for="escadas" value="Escadas:"
+									styleClass="outputfont" />
+								<p:spinner id="escadas" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.escadas}" required="true"
+									requiredMessage="O campo ' Escadas ' são obrigatório" size="2" />
+
+
+								<p:outputLabel for="banho" value="Banho:"
+									styleClass="outputfont" />
+								<p:spinner id="banho" max="2" min="0" maxlength="1"
+									value="#{neurologicaBean.indice.banho}" required="true"
+									requiredMessage="O campo ' Banho' são obrigatório" size="2" />
+
+
+
+							</p:panelGrid>
+						</p:fieldset>
+
+
+
+
+					</p:tab>
+
+					<p:tab title="9" titleStyleClass="tab">
+						<p:panelGrid columns="2">
+							<p:outputLabel for="diagnostico" value="Diagnostico:"
+								styleClass="outputfont" />
+							<p:inputTextarea id="diagnostico" maxlength="50" size="80"
+								value="#{neurologicaBean.neurologica.diagnostico}"
+								required="true"
+								requiredMessage="O campo 'Diagnostico' é obrigatório" />
+
+						</p:panelGrid>
+					</p:tab>
+
+
+				</p:tabView>
+
+
+
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						update=":mensagem :formCadastro:painel :formListagem:tabela"
+						actionListener="#{neurologicaBean.salvar}" />
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">	<p:panel header="ATSS">
+			<h:form id="formCadastro">
+				<p:panelGrid id="painel" columns="6"  >
+
+					
+						<p:outputLabel for="qp" value="Qp:" />
+						<p:inputText id="qp" maxlength="50" size="30"
+							value="#{traumatologicaBean.traumatologica.qp}" required="true"
+							requiredMessage="O campo 'Qp' é obrigatório" />
+
+						<p:outputLabel for="hpma" value="Hpma:" />
+						<p:inputText id="hpma" maxlength="50" size="30"
+							value="#{traumatologicaBean.traumatologica.hpma}" required="true"
+							requiredMessage="O campo 'Hpma' é obrigatório" />
+				
+					<p:outputLabel for="examesComplementares"
+						value="Exames Complementares:" />
+					<p:inputText id="examesComplementares" maxlength="50" size="30"
+						value="#{traumatologicaBean.traumatologica.examesComplemetares}"
+						required="true"
+						requiredMessage="O campo 'Exames Complementares' são obrigatório" />
+
+					<p:outputLabel for="osteossintese" value="Osteossintese:" />
+					<p:selectBooleanCheckbox id="osteossintese"
+						value="#{traumatologicaBean.traumatologica.osteossintese}"
+						requiredMessage="O campo 'Osteossintese' é obrigatório" />
+
+					<p:outputLabel for="diu" value="Diu:" />
+					<p:selectBooleanCheckbox id="diu"
+						value="#{traumatologicaBean.traumatologica.diu}"
+						requiredMessage="O campo 'Diu' é obrigatório" />
+
+					<p:outputLabel for="marcaPasso" value="Marca Passo:" />
+					<p:selectBooleanCheckbox id="marcaPasso"
+						value="#{traumatologicaBean.traumatologica.marcaPasso}"
+						requiredMessage="O campo 'Marca Passo' é obrigatório" />
+
+					<p:outputLabel for="eva" value="Eva:" />
+					<p:inputText id="eva" maxlength="50" size="30"
+						value="#{traumatologicaBean.traumatologica.eva}" required="true"
+						requiredMessage="O campo 'Eva' é obrigatório" />
+
+					<p:outputLabel for="patologiasAssociadas"
+						value="Patologias Associadas:" />
+					<p:inputText id="patologiasAssociadas" maxlength="50" size="30"
+						value="#{traumatologicaBean.traumatologica.patologiasAssociadas}"
+						required="true"
+						requiredMessage="O campo 'Patologias Associadas' é obrigatório" />
+
+					<p:outputLabel for="exameFisico" value="Exame Fisico:" />
+					<p:inputText id="exameFisico" maxlength="50" size="30"
+						value="#{traumatologicaBean.traumatologica.exameFisico}"
+						required="true"
+						requiredMessage="O campo 'exameFisico' é obrigatório" />
+
+					<p:outputLabel for="pa" value="Pa:" />
+					<p:inputText id="pa" maxlength="50" size="5"
+						value="#{traumatologicaBean.traumatologica.pa}" required="true"
+						requiredMessage="O campo 'Pa' é obrigatório" />
+
+					<p:outputLabel for="fc" value="Fc:" />
+					<p:inputText id="fc" maxlength="50" size="5"
+						value="#{traumatologicaBean.traumatologica.fc}" required="true"
+						requiredMessage="O campo 'Fc' é obrigatório" />
+
+					<p:outputLabel for="inspecao" value="Inspeção:" />
+					<p:inputText id="inspecao" maxlength="50" size="30"
+						value="#{traumatologicaBean.traumatologica.inspecao}"
+						required="true" requiredMessage="O campo 'Inspeção' é obrigatório" />
+
+
+					<p:outputLabel for="palpacao" value="Palpação:" />
+					<p:inputText id="palpacao" maxlength="50" size="30"
+						value="#{traumatologicaBean.traumatologica.palpacao}"
+						required="true" requiredMessage="O campo 'Palpação' é obrigatório" />
+
+
+					<p:outputLabel for="discrepancia" value="Discrepancia:" />
+					<p:inputText id="discrepancia" maxlength="50" size="30"
+						value="#{traumatologicaBean.traumatologica.discrepancia}"
+						required="true"
+						requiredMessage="O campo 'Discrepancia' é obrigatório" />
+
+
+					<p:outputLabel for="movimento" value="Movimento" />
+					<p:inputText id="movimento" maxlength="50" size="30"
+						value="#{traumatologicaBean.adm.movimento}" required="true"
+						requiredMessage="O campo 'Movimento' é obrigatório" />
+
+					<p:outputLabel for="direita" value="Direita:" />
+					<p:inputText id="direita" maxlength="50" size="10"
+						value="#{traumatologicaBean.adm.direita}" required="true"
+						requiredMessage="O campo 'Direita' é obrigatório" />
+
+					<p:outputLabel for="esquerda" value="Esquerda:" />
+					<p:inputText id="esquerda" maxlength="50" size="10"
+						value="#{traumatologicaBean.adm.esquerda}" required="true"
+						requiredMessage="O campo 'Esquerda' é obrigatório" />
+
+
+					<p:outputLabel for="musculos" value="Musculos:" />
+					<p:inputText id="musculos" maxlength="50" size="30"
+						value="#{traumatologicaBean.muscular.musculos}" required="true"
+						requiredMessage="O campo 'Musculos' é obrigatório" />
+
+					<p:outputLabel for="direitaM" value="Direita:" />
+					<p:inputText id="direitaM" maxlength="50" size="10"
+						value="#{traumatologicaBean.muscular.direita}" required="true"
+						requiredMessage="O campo 'Direita:' é obrigatório" />
+
+					<p:outputLabel for="esquerdaM" value="Esquerda:" />
+					<p:inputText id="esquerdaM" maxlength="50" size="10"
+						value="#{traumatologicaBean.muscular.esquerda}" required="true"
+						requiredMessage="O campo 'Esquerda:' é obrigatório" />
+
+
+					<p:outputLabel for="reflexos" value="Reflexos:" />
+					<p:inputText id="reflexos" maxlength="50" size="30"
+						value="#{traumatologicaBean.reflexos.reflexos}" required="true"
+						requiredMessage="O campo 'Reflexos:' é obrigatório" />
+
+					<p:outputLabel for="direitaR" value="Direita:" />
+					<p:inputText id="direitaR" maxlength="50" size="10"
+						value="#{traumatologicaBean.reflexos.direita}" required="true"
+						requiredMessage="O campo 'Direita:' é obrigatório" />
+
+					<p:outputLabel for="esquerdaR" value="Esquerda:" />
+					<p:inputText id="esquerdaR" maxlength="50" size="10"
+						value="#{traumatologicaBean.reflexos.esquerda}" required="true"
+						requiredMessage="O campo 'Esquerda:' é obrigatório" />
+
+					<p:outputLabel for="sensibilidade" value="Sensibilidade:" />
+					<p:inputText id="sensibilidade" maxlength="50" size="30"
+						value="#{traumatologicaBean.sensibilidade.dermatomos}"
+						required="true"
+						requiredMessage="O campo 'Movimento' é obrigatório" />
+
+					<p:outputLabel for="direitaS" value="Direita:" />
+					<p:inputText id="direitaS" maxlength="50" size="10"
+						value="#{traumatologicaBean.sensibilidade.direita}"
+						required="true" requiredMessage="O campo 'Direita' é obrigatório" />
+
+					<p:outputLabel for="esquerdaS" value="Esquerda:" />
+					<p:inputText id="esquerdaS" maxlength="50" size="10"
+						value="#{traumatologicaBean.sensibilidade.esquerda}"
+						required="true"
+						requiredMessage="O campo 'Esquerda:' é obrigatório" />
+
+					<p:outputLabel for="especiais" value="Teste especial:" />
+					<p:inputText id="especiais" maxlength="50" size="30"
+						value="#{traumatologicaBean.especiais.testeEspecial}"
+						required="true"
+						requiredMessage="O campo 'Teste especial' é obrigatório" />
+
+					<p:outputLabel for="direitaT" value="Direita:" />
+					<p:inputText id="direitaT" maxlength="50" size="10"
+						value="#{traumatologicaBean.especiais.direita}" required="true"
+						requiredMessage="O campo 'Direita:' é obrigatório" />
+
+					<p:outputLabel for="esquerdaT" value="Esquerda:" />
+					<p:inputText id="esquerdaT" maxlength="50" size="10"
+						value="#{traumatologicaBean.especiais.esquerda}" required="true"
+						requiredMessage="O campo 'Esquerda' é obrigatório" />
+
+					<p:outputLabel for="diagnostico" value="Diagnostico:" />
+					<p:inputText id="diagnostico" maxlength="50" size="30"
+						value="#{traumatologicaBean.traumatologica.diagnostico}"
+						required="true"
+						requiredMessage="O campo 'Diagnostico' é obrigatório" />
+
+				</p:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						update=":mensagem :formCadastro:painel"
+						actionListener="#{traumatologicaBean.salvar}" />
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+			
+			</h:form></p:panel>
+	</ui:define>
+</ui:composition>

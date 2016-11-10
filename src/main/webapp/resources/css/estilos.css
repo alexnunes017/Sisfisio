@@ -1,0 +1,101 @@
+@CHARSET "UTF-8";
+
+.imagemCentralizada {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.n {
+	font-family: Ubuntu;
+	color: blue;
+	font-size: 22px;
+}
+
+.p {
+	font-family: Ubuntu;
+	font-size: 22px;
+}
+
+.divTopo {
+	padding-bottom: 5px;
+}
+
+.divCabecalho {
+	padding-bottom: 5px;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 100% !important;
+}
+
+.tabview {
+	margin: 0;
+	padding: 0;
+	height: auto;
+	width: auto;
+	position: absolute;
+}
+
+.tab {
+	font-family: "Arial Narrow";
+	font-size: 10px;
+	text-align: center;
+}
+
+.menufont {
+	font-family: calibri;
+}
+
+.tabelafont {
+	font-family: Calibri Light;
+	margin: 0px;
+	padding: 0px;
+	font-size: 10px;
+}
+
+.headerfont {
+	font-family: Calibri Light;
+	font-size: 10px;
+	
+}
+
+.radiofont {
+	font-family: "Arial Narrow";
+	font-size: 8px;
+}
+
+.outputfont {
+	font-family: "Arial Narrow";
+	font-size: 6px;
+}
+
+.fieldset {
+	font-family: "Arial Narrow";
+	font-size: 8px;
+	margin: 0px;
+}
+
+.panelGrid {
+	padding: 3px;
+	border: 3px;
+}
+
+.panelgridmenu {
+	border: 0px;
+	margin-left:45%;
+	text-align: center;
+	font-family: corbel;
+	margin: 30px;
+}
+
+.buttonfont {
+	font-family: Calibri Light;
+}
+
+.menufont{
+	font-family: Arial;
+	font-size: 15px;
+	text-align: center;
+	font-weight: bold;
+	}

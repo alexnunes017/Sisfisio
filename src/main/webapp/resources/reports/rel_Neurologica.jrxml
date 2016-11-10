@@ -1,0 +1,711 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_Tratamento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f44aa5c1-4498-438b-b333-83c849d65c83">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="consulta" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[SELECT * FROM view_Neurologica t  WHERE t.consulta = $P{consulta}]]>
+	</queryString>
+	<field name="consulta" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="avaliacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diagnostico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="motivo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fisioterapeuta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="crefito" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="paciente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="medico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="crm" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="af" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Ndiagnostico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="eva" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fc" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fr" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hpma" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pa" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qp" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="alimentacao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="asseio" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="banho" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="escadas" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="evacuacao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="miccao" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="mobilidade" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="toalet" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tranferencia" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vestir" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MidHalux" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MidJoelho" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MidQuadril" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MidTornozelo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MieHalux" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MieJoelho" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MieQuadril" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MieTornozelo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MsdCotovelo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MsdOmbro" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MsdPolegar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MsdPunho" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MseCotovelo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MseOmbro" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MsePolegar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MsePunho" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="profundaRomberg" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="profundaTronco" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="AjoelhadoSemi" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="adm" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aquileuD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aquileuE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="biciptalD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="biciptalE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cutaneoPlanarD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cutaneoPlanarE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ddDld" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ddDle" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ddDv" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ddGato" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ddSentado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="escalaMid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="escalaMie" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="escalaMsd" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="escalaMse" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="gatoAjoelhado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="marcha" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="movimentoMid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="movimentoMie" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="movimentoMsd" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="movimentoMse" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="obs" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="patelarD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="patelarE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pincaFinaD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pincaFinaE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="semiEmpe" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sensibilidadeEromberg" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sensibilidadeEtronco" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sensibilidadeMid" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sensibilidadeMie" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sensibilidadeMsd" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sensibilidadeMse" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sensibilidadetroncoD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sensibilidadetroncoE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sentadoEmpe" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tonus" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="triciptalD" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="triciptalE" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<image>
+				<reportElement x="228" y="0" width="89" height="53" uuid="03314838-9b36-4414-aedb-70aa86ade28e"/>
+				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="20" forecolor="#0000CC" uuid="c911b040-5f1e-4896-8533-71d52d448e3f"/>
+				<box>
+					<bottomPen lineWidth="0.5" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Neurologica]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="606" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="6" height="20" uuid="98868d7c-79e4-4bf4-b497-0e6b1cf2536b"/>
+				<textFieldExpression><![CDATA[$F{consulta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6" y="0" width="6" height="20" uuid="92bb0eb2-7c08-4c28-b58c-66bb633ae9c9"/>
+				<textFieldExpression><![CDATA[$F{avaliacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="12" y="0" width="6" height="20" uuid="3e758091-3f0b-4ed7-9057-97679dff6dd0"/>
+				<textFieldExpression><![CDATA[$F{data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="18" y="0" width="6" height="20" uuid="820067bd-dd67-4b4f-9fc2-a290beede836"/>
+				<textFieldExpression><![CDATA[$F{diagnostico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="24" y="0" width="6" height="20" uuid="c5ec4c75-b8ca-4cec-83e8-462225896726"/>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="30" y="0" width="6" height="20" uuid="91c2ecfe-5882-4a0a-8d9e-6e057c30b123"/>
+				<textFieldExpression><![CDATA[$F{motivo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="36" y="0" width="6" height="20" uuid="42bdae51-f413-4ac9-abd2-e076e7414870"/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="42" y="0" width="6" height="20" uuid="ceec1bf6-2959-4262-8555-348b88102564"/>
+				<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="48" y="0" width="6" height="20" uuid="9af312cb-7e52-4f61-aa2e-a77ba5845a48"/>
+				<textFieldExpression><![CDATA[$F{fisioterapeuta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="0" width="6" height="20" uuid="0e8d102c-3e8d-43a1-a792-49f1bf12f4ee"/>
+				<textFieldExpression><![CDATA[$F{crefito}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="6" height="20" uuid="20ca3352-fbe7-4fb4-9a6e-97e0b340af73"/>
+				<textFieldExpression><![CDATA[$F{paciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="66" y="0" width="6" height="20" uuid="64023137-73f9-4bb9-9eb0-c1e93d555d8e"/>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="0" width="6" height="20" uuid="74a8181e-d795-4a6a-bea1-e74f44786627"/>
+				<textFieldExpression><![CDATA[$F{crm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="0" width="6" height="20" uuid="b7c36900-1e7b-4a1d-8f00-a6da600e59ea"/>
+				<textFieldExpression><![CDATA[$F{af}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="84" y="0" width="6" height="20" uuid="8692c336-8d6b-44d2-8a5e-b4fddb9a6970"/>
+				<textFieldExpression><![CDATA[$F{Ndiagnostico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="0" width="6" height="20" uuid="1047d0c9-0cda-457f-a86a-24e4e4000541"/>
+				<textFieldExpression><![CDATA[$F{dor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="0" width="6" height="20" uuid="6b2e099b-86c3-4fec-bae7-ae44115924ad"/>
+				<textFieldExpression><![CDATA[$F{eva}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="102" y="0" width="6" height="20" uuid="e1479994-94f3-46db-9035-882afe1fc301"/>
+				<textFieldExpression><![CDATA[$F{fc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="108" y="0" width="6" height="20" uuid="fb293a4b-aa6e-44f7-88d9-4a37d90a201e"/>
+				<textFieldExpression><![CDATA[$F{fr}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="0" width="6" height="20" uuid="281e965c-f3fa-475d-b1f7-7950daa6e3a1"/>
+				<textFieldExpression><![CDATA[$F{hpma}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="0" width="6" height="20" uuid="8881f9db-1063-4131-b5b1-b6a9092586bd"/>
+				<textFieldExpression><![CDATA[$F{pa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="126" y="0" width="6" height="20" uuid="8a2215ec-fb72-4864-b6b7-1bc3b3723ff6"/>
+				<textFieldExpression><![CDATA[$F{qp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="0" width="6" height="20" uuid="9529aea1-2539-43d1-bac9-c845d1a3aede"/>
+				<textFieldExpression><![CDATA[$F{alimentacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="6" height="20" uuid="b6c7e7d6-c004-41fb-9650-50a4cdf36e79"/>
+				<textFieldExpression><![CDATA[$F{asseio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="144" y="0" width="6" height="20" uuid="3168e178-5701-491a-98a8-18a90a450158"/>
+				<textFieldExpression><![CDATA[$F{banho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="6" height="20" uuid="09abddeb-2c35-4574-86f7-c61fb2322109"/>
+				<textFieldExpression><![CDATA[$F{escadas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="156" y="0" width="6" height="20" uuid="e2122ca4-9f7b-4ba4-85cc-1641f6977854"/>
+				<textFieldExpression><![CDATA[$F{evacuacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="162" y="0" width="6" height="20" uuid="11c8d0c5-855f-40cd-85d6-2ac9eb794e29"/>
+				<textFieldExpression><![CDATA[$F{miccao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="0" width="6" height="20" uuid="aed8d558-10b1-4f46-a26c-af8613374069"/>
+				<textFieldExpression><![CDATA[$F{mobilidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="0" width="6" height="20" uuid="fc2eaecb-12cd-48f8-8730-3d3763b899f2"/>
+				<textFieldExpression><![CDATA[$F{toalet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="6" height="20" uuid="2dce6d87-5410-45eb-932e-3eb387630a38"/>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="186" y="0" width="6" height="20" uuid="72187025-a523-4e99-ab5b-2a5b2b806034"/>
+				<textFieldExpression><![CDATA[$F{tranferencia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="0" width="6" height="20" uuid="45c16c0c-069b-4ab2-9589-f36cebb26f93"/>
+				<textFieldExpression><![CDATA[$F{vestir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="0" width="6" height="20" uuid="55ebc8ba-a0e0-493b-806e-088bdfc3bfca"/>
+				<textFieldExpression><![CDATA[$F{MidHalux}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="204" y="0" width="6" height="20" uuid="813402cb-7fcf-46d9-8506-13f29bf21973"/>
+				<textFieldExpression><![CDATA[$F{MidJoelho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="6" height="20" uuid="0c2efd61-8f79-4980-a2dc-1f9c8105c6c5"/>
+				<textFieldExpression><![CDATA[$F{MidQuadril}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="216" y="0" width="6" height="20" uuid="b001cad4-d59d-465b-9d07-d91d0bd15209"/>
+				<textFieldExpression><![CDATA[$F{MidTornozelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="6" height="20" uuid="a4359c64-06d9-46e1-a33c-b81ef4644cc0"/>
+				<textFieldExpression><![CDATA[$F{MieHalux}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="228" y="0" width="6" height="20" uuid="5a88af4a-3816-4da2-8247-2522fadda8c6"/>
+				<textFieldExpression><![CDATA[$F{MieJoelho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="234" y="0" width="6" height="20" uuid="61a48dcc-99fa-4c28-ab1c-ae401e34ff99"/>
+				<textFieldExpression><![CDATA[$F{MieQuadril}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="6" height="20" uuid="d02c0747-6e44-4bbf-9055-14d3582dfef5"/>
+				<textFieldExpression><![CDATA[$F{MieTornozelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="246" y="0" width="6" height="20" uuid="2ca1a445-57c7-4b8b-8564-2891bad682e3"/>
+				<textFieldExpression><![CDATA[$F{MsdCotovelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="252" y="0" width="6" height="20" uuid="d43a9d29-1fc5-45c0-abd4-de52e19725f0"/>
+				<textFieldExpression><![CDATA[$F{MsdOmbro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="258" y="0" width="6" height="20" uuid="fea14b56-b570-499f-85f0-73cc1610e1b4"/>
+				<textFieldExpression><![CDATA[$F{MsdPolegar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="264" y="0" width="6" height="20" uuid="c10d7046-d3ea-4512-bc53-f7735c92e1bf"/>
+				<textFieldExpression><![CDATA[$F{MsdPunho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="0" width="6" height="20" uuid="2c690433-31c7-47a4-b4d1-e6d14d00b803"/>
+				<textFieldExpression><![CDATA[$F{MseCotovelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="6" height="20" uuid="92278a88-614b-48c6-8434-5f74850139d6"/>
+				<textFieldExpression><![CDATA[$F{MseOmbro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="0" width="6" height="20" uuid="1e3f4c2c-de59-4bb3-aa96-3664bf4fc380"/>
+				<textFieldExpression><![CDATA[$F{MsePolegar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="288" y="0" width="6" height="20" uuid="75040691-c92d-4288-afc5-875e85b0ad8f"/>
+				<textFieldExpression><![CDATA[$F{MsePunho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="294" y="0" width="6" height="20" uuid="d6ce57dc-5f79-409b-b680-44cd3f772d41"/>
+				<textFieldExpression><![CDATA[$F{profundaRomberg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="300" y="0" width="6" height="20" uuid="87279a77-9861-4368-ada1-80c384c2db59"/>
+				<textFieldExpression><![CDATA[$F{profundaTronco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="0" width="6" height="20" uuid="967757c4-9587-467f-97c8-9f5d7220e7f4"/>
+				<textFieldExpression><![CDATA[$F{AjoelhadoSemi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="312" y="0" width="6" height="20" uuid="c7a6bd7f-5aa6-4b8d-86fa-546b13390c1f"/>
+				<textFieldExpression><![CDATA[$F{adm}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="0" width="6" height="20" uuid="a317be6a-3155-48e0-9021-a966552eede1"/>
+				<textFieldExpression><![CDATA[$F{aquileuD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="324" y="0" width="6" height="20" uuid="6247e7f5-04ad-4ebd-8d21-3910e16f3695"/>
+				<textFieldExpression><![CDATA[$F{aquileuE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="330" y="0" width="6" height="20" uuid="1e8b0a00-dc02-441a-8014-ca85007ae330"/>
+				<textFieldExpression><![CDATA[$F{biciptalD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="0" width="6" height="20" uuid="5a19c678-1895-496b-9330-cc4dbad16e50"/>
+				<textFieldExpression><![CDATA[$F{biciptalE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="342" y="0" width="6" height="20" uuid="f5953a87-53ba-4d4e-9c61-32cebb48bced"/>
+				<textFieldExpression><![CDATA[$F{cutaneoPlanarD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="0" width="6" height="20" uuid="d5e19b1e-30ca-4e51-b5e3-52a652dab999"/>
+				<textFieldExpression><![CDATA[$F{cutaneoPlanarE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="0" width="6" height="20" uuid="f1acbe18-6105-4968-b656-4d29d98befcd"/>
+				<textFieldExpression><![CDATA[$F{ddDld}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="360" y="0" width="6" height="20" uuid="ccc4d67a-4305-43e0-ad08-d48785bdae1b"/>
+				<textFieldExpression><![CDATA[$F{ddDle}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="0" width="6" height="20" uuid="991ca2c1-e032-4ccd-b2ae-ef339dea23b9"/>
+				<textFieldExpression><![CDATA[$F{ddDv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="0" width="6" height="20" uuid="d4fcd240-7ebd-410e-890a-91032336d9b2"/>
+				<textFieldExpression><![CDATA[$F{ddGato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="378" y="0" width="6" height="20" uuid="bc5f4ac1-00a2-4c5b-9e0f-5289e074d147"/>
+				<textFieldExpression><![CDATA[$F{ddSentado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="384" y="0" width="6" height="20" uuid="f1bc12b7-8bbb-4da6-96ed-5e4349a34596"/>
+				<textFieldExpression><![CDATA[$F{escalaMid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="390" y="0" width="6" height="20" uuid="eee74c54-38f1-4d06-8b37-320484493af1"/>
+				<textFieldExpression><![CDATA[$F{escalaMie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="396" y="0" width="6" height="20" uuid="10074227-187c-4bb7-a91a-f95ca093c4d8"/>
+				<textFieldExpression><![CDATA[$F{escalaMsd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="0" width="6" height="20" uuid="1b60183e-8260-4109-bcf1-545118642ade"/>
+				<textFieldExpression><![CDATA[$F{escalaMse}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="408" y="0" width="6" height="20" uuid="7313f2e4-5297-442f-8845-9b53fe1d14f9"/>
+				<textFieldExpression><![CDATA[$F{gatoAjoelhado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="6" height="20" uuid="7444c8a0-52e5-4480-b20a-0fde0b420328"/>
+				<textFieldExpression><![CDATA[$F{marcha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="0" width="6" height="20" uuid="da886fb7-8c79-486a-8924-f5c8f7570272"/>
+				<textFieldExpression><![CDATA[$F{movimentoMid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="0" width="6" height="20" uuid="e50f12d6-6804-46d3-9300-a418b9a8a82c"/>
+				<textFieldExpression><![CDATA[$F{movimentoMie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="6" height="20" uuid="9d0de101-6f00-449a-9a43-ee5bdd0dac58"/>
+				<textFieldExpression><![CDATA[$F{movimentoMsd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="438" y="0" width="6" height="20" uuid="59824472-f5f7-4534-856e-24906546fc31"/>
+				<textFieldExpression><![CDATA[$F{movimentoMse}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="444" y="0" width="6" height="20" uuid="24b48b5b-4bdd-4d2e-828c-3a559dadd376"/>
+				<textFieldExpression><![CDATA[$F{obs}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="6" height="20" uuid="c2a843a6-aca6-4f19-bd7b-3244d82a91ef"/>
+				<textFieldExpression><![CDATA[$F{patelarD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="0" width="6" height="20" uuid="4cd6b17d-278d-4083-bcc1-a10168feae9c"/>
+				<textFieldExpression><![CDATA[$F{patelarE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="462" y="0" width="6" height="20" uuid="68240c0a-01e4-43f5-93c1-1f33efc15f1b"/>
+				<textFieldExpression><![CDATA[$F{pincaFinaD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="468" y="0" width="6" height="20" uuid="00c8b7d6-e7c3-49a7-8ca5-c47b6661b5df"/>
+				<textFieldExpression><![CDATA[$F{pincaFinaE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="0" width="6" height="20" uuid="add7bebe-d58e-4f36-bca2-9a1ffdc1c162"/>
+				<textFieldExpression><![CDATA[$F{semiEmpe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="0" width="6" height="20" uuid="958305f5-a314-4de1-b8c9-a9df70aa3a8d"/>
+				<textFieldExpression><![CDATA[$F{sensibilidadeEromberg}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="486" y="0" width="6" height="20" uuid="93e1ccab-65e2-4291-86cd-16738cc2a1cf"/>
+				<textFieldExpression><![CDATA[$F{sensibilidadeEtronco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="492" y="0" width="6" height="20" uuid="1607e5c3-386c-497f-bb98-97e231d44e8a"/>
+				<textFieldExpression><![CDATA[$F{sensibilidadeMid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="498" y="0" width="6" height="20" uuid="fe394b90-6203-4ecd-b4a0-dddef62171be"/>
+				<textFieldExpression><![CDATA[$F{sensibilidadeMie}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="504" y="0" width="6" height="20" uuid="49bcb50e-b228-4bec-810a-0e47bef97fe0"/>
+				<textFieldExpression><![CDATA[$F{sensibilidadeMsd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="510" y="0" width="6" height="20" uuid="77d70014-6229-4d4f-a667-3c572522f6b6"/>
+				<textFieldExpression><![CDATA[$F{sensibilidadeMse}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="516" y="0" width="6" height="20" uuid="157a33a9-56dc-422a-a381-005aaf4d3f83"/>
+				<textFieldExpression><![CDATA[$F{sensibilidadetroncoD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="522" y="0" width="6" height="20" uuid="ad88af9d-8054-4f5c-b644-2918d3fe7a95"/>
+				<textFieldExpression><![CDATA[$F{sensibilidadetroncoE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="528" y="0" width="6" height="20" uuid="7de8eb11-2475-4525-8a18-dfab1ab87dbf"/>
+				<textFieldExpression><![CDATA[$F{sentadoEmpe}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="534" y="0" width="6" height="20" uuid="bacf4d7c-eb8b-4f3b-8bfe-d85081618a79"/>
+				<textFieldExpression><![CDATA[$F{tonus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="540" y="0" width="6" height="20" uuid="77259514-bd25-4ffd-b780-184c20bbee14"/>
+				<textFieldExpression><![CDATA[$F{triciptalD}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="546" y="0" width="6" height="20" uuid="4262ed8d-ed8c-4d62-80bb-5b28dc9f91b7"/>
+				<textFieldExpression><![CDATA[$F{triciptalE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement x="450" y="0" width="83" height="16" uuid="290b7982-1414-4b1c-952a-af1d210f9591"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página(s) "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="533" y="0" width="22" height="16" uuid="40bb8ebb-8669-4873-b512-4be1d420395e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="16" uuid="459abd30-9afa-44bf-9c1c-e872f20d532c"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[SisFisio - Sistema de Fisiotepia]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_Estados" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c0c6b15a-bfef-4bd5-86aa-1666a3f9f3ba">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nomeEstado" class="java.lang.String"/>
+	<parameter name="siglaEstado" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM fisioterapia.estado
+WHERE fisioterapia.estado.nome LIKE  $P{nomeEstado} AND fisioterapia.estado.sigla LIKE  $P{siglaEstado}
+ORDER BY fisioterapia.estado.nome ASC,
+fisioterapia.estado.sigla ASC]]>
+	</queryString>
+	<field name="codigo" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sigla" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="codigo">
+		<groupExpression><![CDATA[$F{codigo}]]></groupExpression>
+	</group>
+	<group name="nome">
+		<groupExpression><![CDATA[$F{nome}]]></groupExpression>
+	</group>
+	<group name="sigla">
+		<groupExpression><![CDATA[$F{sigla}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<image>
+				<reportElement x="223" y="-4" width="89" height="53" uuid="f8ba8aae-ecf2-4221-a623-68d36ea07c48"/>
+				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="22" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="1" y="0" width="554" height="22" forecolor="#0000CC" uuid="ac112882-e4c9-4722-87e1-e4fec42a4aaf"/>
+				<box>
+					<topPen lineWidth="0.0" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Calibri" size="14" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Relátorio de Estado(s)]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="20" uuid="516b6a32-bc65-4c5d-828c-cfbf48646b9f"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CÓDIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="0" width="185" height="20" uuid="10859062-c1b7-48da-88e3-1aa0e08dab03"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="370" y="0" width="185" height="20" uuid="c59057d0-179f-4ce2-ad70-5d2f1a91ffdf"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial Narrow" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SIGLA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="185" height="20" uuid="c27957ea-b61f-4279-9fa3-c985c3f9cff8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="0" width="185" height="20" uuid="b485d5ed-2f18-4835-9f44-24878e31f194"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="185" height="20" uuid="964d1431-c792-4268-a1e0-bdbd99366a0e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial Narrow" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sigla}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement x="-1" y="0" width="555" height="16" uuid="e421b2f9-3183-4d9e-b601-f9fe880942e4"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="false" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[SisFisio - Sistema de Fisiotepia]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="449" y="0" width="83" height="16" uuid="e307a4dd-59dd-4a1f-b693-47c2026fcceb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página(s) "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="532" y="0" width="22" height="16" uuid="1b67c695-2ed6-4e9b-831c-c85623ec7a29"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

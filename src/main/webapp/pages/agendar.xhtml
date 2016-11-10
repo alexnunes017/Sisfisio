@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel header="Agendamentos - Listagem" styleClass="headerfont">
+				<p:dataTable id="tabela" widgetVar="tabela"
+					emptyMessage="Nenhum registro encontrado." paginator="true"
+					value="#{consultaBean.consultas}" var="consulta" rows="5"
+					styleClass="tabelafont">
+					<f:facet name="header">
+						<p:commandButton icon="ui-icon-plus"
+							oncomplete="PF('dialogo').show();"
+							actionListener="#{consultaBean.novo}"
+							update=":mensagem :formCadastro:painel">
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+					</f:facet>
+
+					<p:column headerText="Código" sortBy="#{consulta.codigo}"
+						filterBy="#{consulta.codigo}">
+						<h:outputText value="#{consulta.codigo}" />
+					</p:column>
+
+
+					<p:column headerText="Data" sortBy="#{consulta.dataFormatada}"
+						filterBy="#{consulta.data}">
+						<h:outputText value="#{consulta.dataFormatada}" />
+					</p:column>
+
+					<p:column headerText="Hora" sortBy="#{consulta.hora}"
+						filterBy="#{consulta.hora}">
+						<h:outputText value="#{consulta.hora}" />
+					</p:column>
+
+					<p:column headerText="Paciente" sortBy="#{consulta.pessoa.nome}"
+						filterBy="#{consulta.pessoa.nome}">
+						<h:outputText value="#{consulta.pessoa.nome}" />
+					</p:column>
+
+
+
+					<p:column headerText="Status" sortBy="#{consulta.statusFormatado}"
+						filterBy="#{consulta.status}">
+						<f:facet name="filter">
+							<p:selectOneMenu onchange="PF('tabela').filter()">
+								<f:selectItem itemValue="" itemLabel="Todos" />
+								<f:selectItem itemValue="M" itemLabel="Marcadas" />
+								<f:selectItem itemValue="C" itemLabel="Canceladas" />
+								<f:selectItem itemValue="R" itemLabel="Realizadas" />
+							</p:selectOneMenu>
+						</f:facet>
+						<h:outputText value="#{consulta.statusFormatado}" />
+					</p:column>
+
+					<p:column headerText="Fisioterapeuta"
+						sortBy="#{consulta.fisioterapeuta.pessoa.nome}"
+						filterBy="#{consulta.fisioterapeuta.pessoa.nome}">
+						<h:outputText value="#{consulta.fisioterapeuta.pessoa.nome}" />
+					</p:column>
+
+
+
+					<p:column headerText="Tipo" sortBy="#{consulta.tipoFormatado}"
+						filterBy="#{consulta.tipo}">
+						<h:outputText value="#{consulta.tipoFormatado}" />
+						<f:facet name="filter">
+							<p:selectOneMenu onchange="PF('tabela').filter()">
+								<f:selectItem itemValue="" itemLabel="Todos" />
+								<f:selectItem itemValue="T" itemLabel="Tratamentos" />
+								<f:selectItem itemValue="A" itemLabel="Avaliações" />
+							</p:selectOneMenu>
+						</f:facet>
+					</p:column>
+
+
+					<p:column headerText="Avaliação"
+						sortBy="#{consulta.avaliacaoFormatado}"
+						filterBy="#{consulta.avaliacao}">
+						<f:facet name="filter">
+							<p:selectOneMenu onchange="PF('tabela').filter()">
+								<f:selectItem itemValue="" itemLabel="Todos" />
+								<f:selectItem itemValue="N" itemLabel="Neurológica" />
+								<f:selectItem itemValue="G" itemLabel="Geriátrica" />
+								<f:selectItem itemValue="T" itemLabel="Traumatológica" />
+								<f:selectItem itemValue="D" itemLabel="Díagnostico" />
+							</p:selectOneMenu>
+						</f:facet>
+						<h:outputText value="#{consulta.avaliacaoFormatado}" />
+					</p:column>
+
+
+
+					<p:column headerText="Opções">
+
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{consultaBean.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dialogo').show();"
+							disabled="#{consultaBean.situacaoConsulta}" >
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+
+						<p:commandButton icon="ui-icon-close"
+							actionListener="#{consultaBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja Cancelar a consulta" icon="ui-icon-closet" />
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+						</p:commandButton>
+
+
+					</p:column>
+				</p:dataTable>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Consultas - Cadastro" widgetVar="dialogo"
+			draggable="false" resizable="false" modal="true" closable="false">
+			<h:form id="formCadastro">
+				<h:panelGrid id="painel" columns="2">
+
+					<p:outputLabel for="data" value="Data da Consulta:" />
+					<p:calendar id="data" value="#{consultaBean.consulta.data}"
+						required="true"
+						requiredMessage="O campo 'Data de Cadastro' é obrigatório"
+						size="10" locale="pt_BR" pattern="dd-MM-yyyy" mindate="data" />
+
+					<p:outputLabel for="hora" value="Hora da Consulta:" />
+					<p:calendar id="hora" value="#{consultaBean.consulta.hora}"
+						pattern="HH:mm" timeOnly="true" locale="pt_BR" minHour="7"
+						maxHour="18" size="6" />
+
+					<p:outputLabel for="pessoa" value="Paciente:" />
+					<p:selectOneMenu id="pessoa" filter="true"
+						value="#{consultaBean.consulta.pessoa}" required="true"
+						requiredMessage="O campo 'Pessoa' é obrigatório"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione uma pessoa" />
+						<f:selectItems value="#{consultaBean.pessoas}" var="pessoa"
+							itemValue="#{pessoa}" itemLabel="#{pessoa.nome} - #{pessoa.cpf}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="medico" value="Médico:" />
+					<p:selectOneMenu id="medico" filter="true"
+						value="#{consultaBean.consulta.medico}" required="true"
+						requiredMessage="O campo 'Médico' é obrigatório"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione um médico" />
+						<f:selectItems value="#{consultaBean.medicos}" var="medico"
+							itemValue="#{medico}" itemLabel="#{medico.nome} - #{medico.crm}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="fisioterapeuta" value="Fisioterapeuta:" />
+					<p:selectOneMenu id="fisioterapeuta" filter="true"
+						value="#{consultaBean.consulta.fisioterapeuta}" required="true"
+						requiredMessage="O campo 'Fisioterapeuta' é obrigatório"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem noSelectionOption="true"
+							itemLabel="Selecione um fisioterapeuta" />
+						<f:selectItems value="#{consultaBean.fisioterapeutas}"
+							var="fisioterapeuta" itemValue="#{fisioterapeuta}"
+							itemLabel="#{fisioterapeuta.pessoa.nome} - #{fisioterapeuta.crefito}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel for="tipo" value="Tipo:" />
+					<p:selectOneRadio id="tipo" value="#{consultaBean.consulta.tipo}"
+						required="true" requiredMessage="O campo 'Tipo' ´obrigatório">
+						<f:selectItem itemValue="A" itemLabel="Avaliação" />
+						<f:selectItem itemValue="T" itemLabel="Tratamento" />
+						<p:ajax event="change" update="avaliacao"
+							listener="#{consultaBean.mudar}" />
+					</p:selectOneRadio>
+
+
+
+					<p:outputLabel for="avaliacao" value="Avaliação:" />
+					<p:selectOneRadio id="avaliacao"
+						value="#{consultaBean.consulta.avaliacao}" required="true"
+						requiredMessage="O campo 'Tipo' ´obrigatório"
+						disabled="#{consultaBean.situacao}">
+						<f:selectItem itemValue="T" itemLabel="Traumatologica" />
+						<f:selectItem itemValue="N" itemLabel="Neurologica" />
+						<f:selectItem itemValue="G" itemLabel="Geriatrica" />
+
+					</p:selectOneRadio>
+
+
+
+					<p:outputLabel value="Motivo:" />
+					<p:inputTextarea size="30" maxlength="100"
+						value="#{consultaBean.consulta.motivo}" />
+
+				</h:panelGrid>
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						update=":mensagem :formCadastro:painel :formListagem:tabela"
+						actionListener="#{consultaBean.salvar}" />
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

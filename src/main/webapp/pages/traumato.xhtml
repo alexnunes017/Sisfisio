@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formListagem">
+			<p:panel header="Avaliações- Listagem" styleClass="headerfont">
+				<p:dataTable id="tabela" widgetVar="tabela"
+					emptyMessage="Nenhum registro encontrado." paginator="true"
+					value="#{traumatologicaBean.consultas}" var="consulta" rows="5"
+					styleClass="tabelafont">
+					<!-- 					<f:facet name="header"> -->
+					<!-- 						<p:commandButton icon="ui-icon-document" -->
+					<!-- 							oncomplete="PF('dialogo').show();" -->
+					<!-- 							actionListener="#{traumatologicaBean.novo}" -->
+					<!-- 							update=":mensagem :formCadastro:painel"> -->
+					<!-- 							<f:actionListener -->
+					<!-- 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" /> -->
+					<!-- 						</p:commandButton> -->
+					<!-- 					</f:facet> -->
+
+
+					<p:column style="width:16px">
+						<p:rowToggler />
+					</p:column>
+
+					<p:column headerText="Data" sortBy="#{consulta.dataFormatada}"
+						filterBy="#{consulta.data}">
+						<h:outputText value="#{consulta.dataFormatada}" />
+					</p:column>
+
+					<p:column headerText="Hora" sortBy="#{consulta.hora}"
+						filterBy="#{consulta.hora}">
+						<h:outputText value="#{consulta.hora}" />
+					</p:column>
+
+					<p:column headerText="Paciente" sortBy="#{consulta.pessoa.nome}"
+						filterBy="#{consulta.pessoa.nome}">
+						<h:outputText value="#{consulta.pessoa.nome}" />
+					</p:column>
+
+
+					<p:column headerText="Status" sortBy="#{consulta.statusFormatado}"
+						filterBy="#{consulta.status}">
+						<f:facet name="filter">
+							<p:selectOneMenu onchange="PF('tabela').filter()">
+								<f:selectItem itemValue="" itemLabel="Todos" />
+								<f:selectItem itemValue="M" itemLabel="Marcada" />
+								<f:selectItem itemValue="C" itemLabel="Cancelada" />
+								<f:selectItem itemValue="R" itemLabel="Realizada" />
+							</p:selectOneMenu>
+						</f:facet>
+						<h:outputText value="#{consulta.statusFormatado}" />
+					</p:column>
+
+					<p:column headerText="Fisioterapeuta"
+						sortBy="#{consulta.fisioterapeuta.pessoa.nome}"
+						filterBy="#{consulta.fisioterapeuta.pessoa.nome}">
+						<h:outputText value="#{consulta.fisioterapeuta.pessoa.nome}" />
+					</p:column>
+
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-plus	"
+							actionListener="#{traumatologicaBean.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+						<p:commandButton icon="ui-icon-cancel"
+							actionListener="#{traumatologicaBean.excluir}"
+							update=":mensagem :formListagem:tabela">
+							<p:confirm header="Confirmação"
+								message="Deseja excluir a consulta" icon="ui-icon-alert" />
+							<f:attribute name="consultaSelecionada" value="#{consulta}" />
+						</p:commandButton>
+
+
+					</p:column>
+					<p:rowExpansion>
+						<p:dataTable emptyMessage="Nenhum registro encontrado"
+							value="#{consulta.traumatologicas}" var="traumato" styleClass="tabelafont">
+
+							<p:column headerText="qp">
+								<h:outputText value="#{traumato.qp}" />
+							</p:column>
+							<p:column headerText="hpma">
+								<h:outputText value="#{traumato.hpma}" />
+							</p:column>
+							<p:column headerText="exames complementares">
+								<h:outputText value="#{traumato.examesComplemetares}" />
+							</p:column>
+
+
+
+						</p:dataTable>
+					</p:rowExpansion>
+				</p:dataTable>
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+
+				</p:confirmDialog>
+			</p:panel>
+		</h:form>
+
+		<p:dialog header="Avaliação" widgetVar="dialogo" draggable="false"
+			resizable="false" modal="true" closable="false" dynamic="true">
+			<h:form id="formCadastro">
+
+				<p:tabView id="painel" styleClass="tabview">
+					<p:tab title="1" titleStyleClass="tab">
+						<p:panelGrid columns="6" styleClass="panelGrid">
+							<p:outputLabel for="qp" value="Qp:" styleClass="outputfont" />
+							<p:inputText id="qp" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.qp}" required="true"
+								requiredMessage="O campo 'Qp' é obrigatório" />
+
+							<p:outputLabel for="hpma" value="Hpma:" styleClass="outputfont" />
+							<p:inputText id="hpma" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.hpma}"
+								required="true" requiredMessage="O campo 'Hpma' é obrigatório" />
+
+							<p:outputLabel for="examesComplementares"
+								value="Exames Complementares:" styleClass="outputfont" />
+							<p:inputText id="examesComplementares" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.examesComplemetares}"
+								required="true"
+								requiredMessage="O campo 'Exames Complementares' são obrigatório" />
+
+							<p:outputLabel for="osteossintese" value="Osteossintese:"
+								styleClass="outputfont" />
+							<p:selectBooleanCheckbox id="osteossintese"
+								value="#{traumatologicaBean.traumatologica.osteossintese}"
+								requiredMessage="O campo 'Osteossintese' é obrigatório" />
+
+							<p:outputLabel for="diu" value="Diu:" styleClass="outputfont" />
+							<p:selectBooleanCheckbox id="diu"
+								value="#{traumatologicaBean.traumatologica.diu}"
+								requiredMessage="O campo 'Diu' é obrigatório" />
+
+							<p:outputLabel for="marcaPasso" value="Marca Passo:"
+								styleClass="outputfont" />
+							<p:selectBooleanCheckbox id="marcaPasso"
+								value="#{traumatologicaBean.traumatologica.marcaPasso}"
+								requiredMessage="O campo 'Marca Passo' é obrigatório" />
+
+							<p:outputLabel for="eva" value="Eva:" styleClass="outputfont" />
+							<p:inputText id="eva" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.eva}" required="true"
+								requiredMessage="O campo 'Eva' é obrigatório" />
+
+							<p:outputLabel for="patologiasAssociadas"
+								value="Patologias Associadas:" styleClass="outputfont" />
+							<p:inputText id="patologiasAssociadas" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.patologiasAssociadas}"
+								required="true"
+								requiredMessage="O campo 'Patologias Associadas' é obrigatório" />
+
+
+							<p:outputLabel for="exameFisico" value="Exame Fisico:"
+								styleClass="outputfont" />
+							<p:inputText id="exameFisico" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.exameFisico}"
+								required="true"
+								requiredMessage="O campo 'exameFisico' é obrigatório" />
+
+
+						</p:panelGrid>
+
+					</p:tab>
+
+					<p:tab title="2" titleStyleClass="tab">
+						<p:panelGrid columns="4" styleClass="panelGrid">
+
+							<p:outputLabel for="pa" value="Pa:" styleClass="outputfont" />
+							<p:inputText id="pa" maxlength="50" size="5"
+								value="#{traumatologicaBean.traumatologica.pa}" required="true"
+								requiredMessage="O campo 'Pa' é obrigatório" />
+
+							<p:outputLabel for="fc" value="Fc:" styleClass="outputfont" />
+							<p:inputText id="fc" maxlength="50" size="5"
+								value="#{traumatologicaBean.traumatologica.fc}" required="true"
+								requiredMessage="O campo 'Fc' é obrigatório" />
+
+							<p:outputLabel for="inspecao" value="Inspeção:"
+								styleClass="outputfont" />
+							<p:inputText id="inspecao" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.inspecao}"
+								required="true"
+								requiredMessage="O campo 'Inspeção' é obrigatório" />
+
+
+							<p:outputLabel for="palpacao" value="Palpação:"
+								styleClass="outputfont" />
+							<p:inputText id="palpacao" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.palpacao}"
+								required="true"
+								requiredMessage="O campo 'Palpação' é obrigatório" />
+
+
+							<p:outputLabel for="discrepancia" value="Discrepancia:"
+								styleClass="outputfont" />
+							<p:inputTextarea id="discrepancia" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.discrepancia}"
+								required="true"
+								requiredMessage="O campo 'Discrepancia' é obrigatório" />
+						</p:panelGrid>
+					</p:tab>
+
+					<p:tab title="3" titleStyleClass="tab">
+						<p:panelGrid columns="6" styleClass="panelGrid">
+							<p:outputLabel for="movimento" value="Movimento"
+								styleClass="outputfont" />
+							<p:inputText id="movimento" maxlength="50" size="30"
+								value="#{traumatologicaBean.adm.movimento}" required="true"
+								requiredMessage="O campo 'Movimento' é obrigatório" />
+
+							<p:outputLabel for="direita" value="Direita:"
+								styleClass="outputfont" />
+							<p:inputText id="direita" maxlength="50" size="10"
+								value="#{traumatologicaBean.adm.direita}" required="true"
+								requiredMessage="O campo 'Direita' é obrigatório" />
+
+							<p:outputLabel for="esquerda" value="Esquerda:"
+								styleClass="outputfont" />
+							<p:inputText id="esquerda" maxlength="50" size="10"
+								value="#{traumatologicaBean.adm.esquerda}" required="true"
+								requiredMessage="O campo 'Esquerda' é obrigatório" />
+
+
+							<p:outputLabel for="musculos" value="Musculos:"
+								styleClass="outputfont" />
+							<p:inputText id="musculos" maxlength="50" size="30"
+								value="#{traumatologicaBean.muscular.musculos}" required="true"
+								requiredMessage="O campo 'Musculos' é obrigatório" />
+
+							<p:outputLabel for="direitaM" value="Direita:"
+								styleClass="outputfont" />
+							<p:inputText id="direitaM" maxlength="50" size="10"
+								value="#{traumatologicaBean.muscular.direita}" required="true"
+								requiredMessage="O campo 'Direita:' é obrigatório" />
+
+							<p:outputLabel for="esquerdaM" value="Esquerda:"
+								styleClass="outputfont" />
+							<p:inputText id="esquerdaM" maxlength="50" size="10"
+								value="#{traumatologicaBean.muscular.esquerda}" required="true"
+								requiredMessage="O campo 'Esquerda:' é obrigatório" />
+
+
+							<p:outputLabel for="reflexos" value="Reflexos:"
+								styleClass="outputfont" />
+							<p:inputText id="reflexos" maxlength="50" size="30"
+								value="#{traumatologicaBean.reflexos.reflexos}" required="true"
+								requiredMessage="O campo 'Reflexos:' é obrigatório" />
+
+							<p:outputLabel for="direitaR" value="Direita:"
+								styleClass="outputfont" />
+							<p:inputText id="direitaR" maxlength="50" size="10"
+								value="#{traumatologicaBean.reflexos.direita}" required="true"
+								requiredMessage="O campo 'Direita:' é obrigatório" />
+
+							<p:outputLabel for="esquerdaR" value="Esquerda:"
+								styleClass="outputfont" />
+							<p:inputText id="esquerdaR" maxlength="50" size="10"
+								value="#{traumatologicaBean.reflexos.esquerda}" required="true"
+								requiredMessage="O campo 'Esquerda:' é obrigatório" />
+
+							<p:outputLabel for="sensibilidade" value="Sensibilidade:"
+								styleClass="outputfont" />
+							<p:inputText id="sensibilidade" maxlength="50" size="30"
+								value="#{traumatologicaBean.sensibilidade.dermatomos}"
+								required="true"
+								requiredMessage="O campo 'Movimento' é obrigatório" />
+
+							<p:outputLabel for="direitaS" value="Direita:"
+								styleClass="outputfont" />
+							<p:inputText id="direitaS" maxlength="50" size="10"
+								value="#{traumatologicaBean.sensibilidade.direita}"
+								required="true"
+								requiredMessage="O campo 'Direita' é obrigatório" />
+
+							<p:outputLabel for="esquerdaS" value="Esquerda:"
+								styleClass="outputfont" />
+							<p:inputText id="esquerdaS" maxlength="50" size="10"
+								value="#{traumatologicaBean.sensibilidade.esquerda}"
+								required="true"
+								requiredMessage="O campo 'Esquerda:' é obrigatório" />
+
+							<p:outputLabel for="especiais" value="Teste especial:"
+								styleClass="outputfont" />
+							<p:inputText id="especiais" maxlength="50" size="30"
+								value="#{traumatologicaBean.especiais.testeEspecial}"
+								required="true"
+								requiredMessage="O campo 'Teste especial' é obrigatório" />
+
+							<p:outputLabel for="direitaT" value="Direita:"
+								styleClass="outputfont" />
+							<p:inputText id="direitaT" maxlength="50" size="10"
+								value="#{traumatologicaBean.especiais.direita}" required="true"
+								requiredMessage="O campo 'Direita:' é obrigatório" />
+
+							<p:outputLabel for="esquerdaT" value="Esquerda:"
+								styleClass="outputfont" />
+							<p:inputText id="esquerdaT" maxlength="50" size="10"
+								value="#{traumatologicaBean.especiais.esquerda}" required="true"
+								requiredMessage="O campo 'Esquerda' é obrigatório" />
+
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="4" titleStyleClass="tab">
+						<p:panelGrid columns="2" styleClass="panelGrid">
+
+							<p:outputLabel for="diagnostico" value="Diagnostico:"
+								styleClass="outputfont" />
+							<p:inputTextarea id="diagnostico" maxlength="50" size="30"
+								value="#{traumatologicaBean.traumatologica.diagnostico}"
+								required="true"
+								requiredMessage="O campo 'Diagnostico' é obrigatório" />
+
+						</p:panelGrid>
+					</p:tab>
+				</p:tabView>
+
+
+
+
+				<h:panelGrid columns="2">
+					<p:commandButton value="Salvar"
+						update=":mensagem :formCadastro:painel :formListagem:tabela"
+						actionListener="#{traumatologicaBean.salvar}" />
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
