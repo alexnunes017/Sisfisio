@@ -8,7 +8,8 @@ import br.com.nunes.fisioterapia.domain.Pessoa;
 import br.com.nunes.fisioterapia.domain.Usuario;
 
 public class UsuarioDAOTest {
-	@Test
+	@SuppressWarnings("unused")
+  @Test
 	public void salvar(){
 		PessoaDAO pessoaDAO = new PessoaDAO();
 		Pessoa pessoa = pessoaDAO.buscar(1L);
