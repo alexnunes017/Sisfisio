@@ -21,6 +21,8 @@ import br.com.nunes.fisioterapia.dao.ConsultaDAO;
 import br.com.nunes.fisioterapia.domain.Consulta;
 import br.com.nunes.fisioterapia.domain.Usuario;
 
+
+//teste test
 @SuppressWarnings("serial")
 @ManagedBean
 @ViewScoped

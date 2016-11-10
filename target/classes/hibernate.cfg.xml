@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Configurações de Conexão com o Banco de Dados -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/fisioterapia</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">linux</property>
+
+		<!-- Pool de Conexões -->
+		<property name="connection.pool_size">1</property>
+
+		<!-- SQL dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+
+		<!-- Gerenciamento do Contexto das Sessões -->
+		<property name="current_session_context_class">thread</property>
+
+		<!-- Cache de Segundo Nível -->
+		<property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+
+		<!-- Mostra as SQLs Geradas -->
+		<property name="show_sql">true</property>
+
+		<!-- Cria as tabelas do banco de dados -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<!-- Mapeamento das entidades -->
+		<mapping class="br.com.nunes.fisioterapia.domain.Cidade" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Consulta" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Estado" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Fisioterapeuta" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Medico" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Pessoa" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Usuario" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Traumatologica" />
+		<mapping class="br.com.nunes.fisioterapia.domain.TR_Adm" />
+		<mapping class="br.com.nunes.fisioterapia.domain.TR_ForcaMuscular" />
+		<mapping class="br.com.nunes.fisioterapia.domain.TR_Reflexos" />
+		<mapping class="br.com.nunes.fisioterapia.domain.TR_Sensibilidade" />
+		<mapping class="br.com.nunes.fisioterapia.domain.TR_TestesEspeciais" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Geriatrica" />
+		<mapping class="br.com.nunes.fisioterapia.domain.GE_Locomocao" />
+		<mapping class="br.com.nunes.fisioterapia.domain.GE_Exame" />
+		<mapping class="br.com.nunes.fisioterapia.domain.GE_Reflexos" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Neurologica" />
+		<mapping class="br.com.nunes.fisioterapia.domain.NE_Indice" />
+		<mapping class="br.com.nunes.fisioterapia.domain.NE_Tonus" />
+		<mapping class="br.com.nunes.fisioterapia.domain.NE_SensibilidadeProfunda" />
+		<mapping class="br.com.nunes.fisioterapia.domain.Tratamento" />
+		
+		
+
+
+
+
+	</session-factory>
+
+</hibernate-configuration>
