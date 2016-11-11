@@ -6,7 +6,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
-@Entity
+@Entity(name="pessoa")
 public class Pessoa extends GenericDomain {
 	/**
 	 * 

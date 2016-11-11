@@ -3,7 +3,7 @@ package br.com.nunes.fisioterapia.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity
+@Entity(name="medico")
 public class Medico extends GenericDomain {
 
 	/**

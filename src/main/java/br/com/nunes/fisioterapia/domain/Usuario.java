@@ -7,7 +7,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @SuppressWarnings("serial")
-@Entity
+@Entity(name="usuario")
 public class Usuario extends GenericDomain {
 	@Column(length = 32, nullable = false)
 	private String senha;

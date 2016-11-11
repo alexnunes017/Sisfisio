@@ -117,7 +117,7 @@ public class TratamentoBean implements Serializable {
       UsuarioDAO usuarioDAO = new UsuarioDAO();
       MedicoDAO medicoDAO = new MedicoDAO();
 
-      consulta = new Consulta();
+  //    consulta = new Consulta();
       tratamento = new Tratamento();
       fisioterapeutas = fisioterapeutaDAO.listar();
       pessoas = pessoaDAO.listarTipo("tipo", 'P');
@@ -133,19 +133,13 @@ public class TratamentoBean implements Serializable {
   public void salvar() {
 
     try {
-
       TratamentoDAO tratamentoDAO = new TratamentoDAO();
       ConsultaDAO consultaDAO = new ConsultaDAO();
-      
       consulta.setStatus('R');
       consultaDAO.merge(consulta);
-      
       tratamento.setConsulta(consulta);
-      
-      
-      tratamentoDAO.salvar(tratamento);
 
-      
+      tratamentoDAO.salvar(tratamento);
 
       novo();
       listar();
@@ -208,7 +202,7 @@ public class TratamentoBean implements Serializable {
     consulta.getFisioterapeuta().getPessoa();
     consulta.getPessoa();
     consulta.getMedico();
-  
+    novo();
 
   }
 

@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-@Entity
+@Entity(name="consulta")
 public class Consulta extends GenericDomain {
 
   /**

@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+@Entity(name="tr_testesepeciais")
 public class TR_TestesEspeciais extends GenericDomain {
 
 	/**
