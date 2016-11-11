@@ -30,51 +30,50 @@
 
 				<p:menubar>
 					<p:submenu label="Arquivo" icon="ui-icon-copy"
-						styleClass="menufont">
+						styleClass="headerfont">
 						<p:menuitem value="Sair" action="#{autenticacaoBean.sair}"
-							icon="ui-icon-close" styleClass="menufont" />
+							icon="ui-icon-close" styleClass="headerfont" />
 					</p:submenu>
 					<p:submenu label="Cadastros" icon="ui-icon-pencil"
-						styleClass="menufont">
+						styleClass="headerfont">
 						<p:menuitem value="Estados" outcome="estados"
-							styleClass="menufont" />
-						<p:menuitem value="Cidades" url="/pages/cidades.xhtml"
-							styleClass="menufont" />
-						<p:menuitem value="Pessoas" url="/pages/pessoas.xhtml"
-							styleClass="menufont" />
-						<p:menuitem value="Usuários" url="/pages/usuarios.xhtml"
-							styleClass="menufont" />
-						<p:menuitem value="Médicos" url="/pages/medicos.xhtml"
-							styleClass="menufont" title="Cadastro de medicos" />
-						<p:menuitem value="Fisioterapeutas"
-							url="/pages/fisioterapeutas.xhtml" styleClass="menufont" />
+							styleClass="headerfont" />
+						<p:menuitem value="Cidades" outcome="cidades"
+							styleClass="headerfont" />
+						<p:menuitem value="Pessoas" outcome="pessoas"
+							styleClass="headerfont" />
+						<p:menuitem value="Usuários" outcome="usuarios"
+							styleClass="headerfont" />
+						<p:menuitem value="Médicos" outcome="medicos"
+							styleClass="headerfont" title="Cadastro de medicos" />
+						<p:menuitem value="Fisioterapeutas" outcome="fisioterapeutas"
+							styleClass="headerfont" />
 					</p:submenu>
 					<p:submenu label="Agendamentos" icon="ui-icon-calendar"
-						styleClass="menufont">
+						styleClass="headerfont">
 
-						<p:submenu label="Consulta" styleClass="menufont">
-							<p:menuitem value="Agendar" url="/pages/agendar.xhtml"
-								styleClass="menufont" />
-							<p:menuitem value="Atender" url="/pages/atender.xhtml"
+						<p:submenu label="Consulta" styleClass="headerfont">
+							<p:menuitem value="Agendar" outcome="agendar"
+								styleClass="headerfont" />
+							<p:menuitem value="Atender" outcome="atender"
 								rendered="#{autenticacaoBean.temPermissoes(['A', 'B'])}"
-								styleClass="menufont" />
+								styleClass="headerfont" />
 
 						</p:submenu>
 					</p:submenu>
 					<p:submenu label="Avaliações" icon="ui-icon-clipboard"
 						rendered="#{autenticacaoBean.temPermissoes(['A', 'B'])}"
-						styleClass="menufont">
+						styleClass="headerfont">
 						<p:menuitem value="Traumatologia/Ortopedia/ Reumatologia "
-							url="/pages/traumato.xhtml" styleClass="menufont" />
-						<p:menuitem value="Neurologia" url="/pages/neurologica.xhtml"
-							styleClass="menufont" />
-						<p:menuitem value="Geriatria" url="/pages/geriatrica.xhtml"
-							styleClass="menufont" />
+							outcome="traumato" styleClass="headerfont" />
+						<p:menuitem value="Neurologia" outcome="neurologica"
+							styleClass="headerfont" />
+						<p:menuitem value="Geriatria" outcome="geriatrica"
+							styleClass="headerfont" />
 					</p:submenu>
 					<p:submenu label="Ajuda" icon="ui-icon-comment"
-						styleClass="menufont">
-						<p:menuitem value="Sobre" url="/pages/sobre.xhtml"
-							styleClass="menufont" />
+						styleClass="headerfont">
+						<p:menuitem value="Sobre" outcome="sobre" styleClass="headerfont" />
 
 					</p:submenu>
 				</p:menubar>

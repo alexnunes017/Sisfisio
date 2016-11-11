@@ -16,7 +16,8 @@
 					var="medico" styleClass="tabelafont">
 					<f:facet name="header">
 						<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
-							actionListener="#{medicoBean.novo}" update=":formCadastro:painel"  title="Inserir novo Médico"/>
+							actionListener="#{medicoBean.novo}" update=":formCadastro:painel"
+							styleClass="buttonfont" />
 					</f:facet>
 
 					<p:column headerText="Nome" sortBy="#{medico.nome}"

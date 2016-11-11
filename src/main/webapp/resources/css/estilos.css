@@ -44,7 +44,8 @@
 }
 
 .menufont {
-	font-family: calibri;
+	font-family: Calibri Light;
+	font-size: 10px;
 }
 
 .tabelafont {
@@ -54,10 +55,16 @@
 	font-size: 10px;
 }
 
+
+.inicialfont {
+	font-family: Calibri Light;
+	font-size: 12px;
+	text-align: center;
+}
+
 .headerfont {
 	font-family: Calibri Light;
-	font-size: 10px;
-	
+	font-size: 12px;
 }
 
 .radiofont {
@@ -83,7 +90,7 @@
 
 .panelgridmenu {
 	border: 0px;
-	margin-left:45%;
+	margin-left: 45%;
 	text-align: center;
 	font-family: corbel;
 	margin: 30px;
@@ -91,11 +98,18 @@
 
 .buttonfont {
 	font-family: Calibri Light;
+	font-size: 10px;
 }
 
-.menufont{
+.menufont {
 	font-family: Arial;
 	font-size: 15px;
 	text-align: center;
 	font-weight: bold;
-	}
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 98%;
+}
