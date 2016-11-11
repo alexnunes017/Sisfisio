@@ -2,7 +2,6 @@ package br.com.nunes.fisioterapia.dao;
 
 import org.junit.Test;
 
-import br.com.nunes.fisioterapia.domain.TR_Adm;
 import br.com.nunes.fisioterapia.domain.TR_Sensibilidade;
 import br.com.nunes.fisioterapia.domain.Traumatologica;
 

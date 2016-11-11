@@ -99,7 +99,7 @@ public class EstadoDAOTest {
 		List<Estado> list = new ArrayList<>();
 		EstadoDAO estadoDAO = new EstadoDAO();
 		list = estadoDAO.listar("nome");
-		for (Estado estado : list) {
+		for (@SuppressWarnings("unused") Estado estado : list) {
 			System.out.println(list.get(1));
 		}
 		System.err.println("ListarOrdenado");

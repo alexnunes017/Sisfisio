@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-@Entity(name="consulta")
+@Entity(name = "consulta")
 public class Consulta extends GenericDomain {
 
   /**
@@ -42,7 +42,6 @@ public class Consulta extends GenericDomain {
 
   @Column(length = 250)
   private String diagnostico;
-
 
   @Column(length = 1, nullable = false)
   private Character avaliacao;
@@ -137,8 +136,6 @@ public class Consulta extends GenericDomain {
     this.diagnostico = diagnostico;
   }
 
-
-
   @Transient
   public String getTipoFormatado() {
     String tipoFormatado = null;
@@ -207,10 +204,6 @@ public class Consulta extends GenericDomain {
 
   public void setAvaliacao(Character avaliacao) {
     this.avaliacao = avaliacao;
-  }
-
-  public List<Traumatologica> getTraumatologicas() {
-    return traumatologicas;
   }
 
   public void setTraumatologicas(List<Traumatologica> traumatologicas) {

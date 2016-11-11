@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
+import org.primefaces.model.chart.PieChartModel;
 
 import br.com.nunes.fisioterapia.dao.ConsultaDAO;
 import br.com.nunes.fisioterapia.dao.FisioterapeutaDAO;
@@ -34,6 +35,8 @@ public class ConsultaBean implements Serializable {
   private List<Medico> medicos;
   private Boolean situacao;
   private Boolean situacaoConsulta;
+  private PieChartModel pieModel;
+  
 
   public Consulta getConsulta() {
     return consulta;
@@ -98,6 +101,16 @@ public class ConsultaBean implements Serializable {
   public void setSituacaoConsulta(Boolean situacaoConsulta) {
     this.situacaoConsulta = situacaoConsulta;
   }
+  
+  
+
+  public PieChartModel getPieModel() {
+    return pieModel;
+  }
+
+  public void setPieModel(PieChartModel pieModel) {
+    this.pieModel = pieModel;
+  }
 
   public void salvar() {
 
@@ -139,11 +152,27 @@ public class ConsultaBean implements Serializable {
       pessoas = pessoaDAO.listarTipo("tipo", 'P');
       usuarios = usuarioDAO.listar();
       medicos = medicoDAO.listar();
+      grafico(consultas);
     } catch (RuntimeException e) {
       Messages.addGlobalError("Ocorreu um erro ao tentar listar as consultas");
       e.printStackTrace();
     }
   }
+  
+  private void grafico(List<Consulta> lista) {
+
+    pieModel = new PieChartModel();
+
+    for (Consulta con : lista) {
+        
+         pieModel.set(con.getAvaliacaoFormatado(),con.hashCode()); 
+    }
+    pieModel.setTitle("Consultas");
+    pieModel.setLegendPosition("e");
+    pieModel.setFill(false);
+    pieModel.setShowDataLabels(true);
+    pieModel.setDiameter(150);
+}
 
   public void novo() {
     try {
