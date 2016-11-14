@@ -1,14 +1,19 @@
 package br.com.nunes.fisioterapia.bean;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
+import org.primefaces.component.datatable.DataTable;
 
 import br.com.nunes.fisioterapia.dao.ConsultaDAO;
 import br.com.nunes.fisioterapia.dao.NE_IndiceDAO;
@@ -20,6 +25,11 @@ import br.com.nunes.fisioterapia.domain.NE_Indice;
 import br.com.nunes.fisioterapia.domain.NE_SensibilidadeProfunda;
 import br.com.nunes.fisioterapia.domain.NE_Tonus;
 import br.com.nunes.fisioterapia.domain.Neurologica;
+import br.com.nunes.fisioterapia.util.HibernateUtil;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 @SuppressWarnings("serial")
 @ManagedBean
@@ -212,6 +222,50 @@ public class NeurologicaBean implements Serializable {
     } catch (RuntimeException e) {
       Messages.addGlobalError("Ocorreu um erro ao tentar excluir o estado");
       e.printStackTrace();
+    }
+  }
+
+  public void imprimir() {
+    try {
+      DataTable tabela = (DataTable) Faces.getViewRoot().findComponent("formListagem:tabela");
+      Map<String, Object> filtros = tabela.getFilters();
+
+      String nomeEstado = (String) filtros.get("nome");
+      String siglaEstado = (String) filtros.get("sigla");
+
+      String caminho = Faces.getRealPath("/resources/reports/rel_Pacientes.jasper");
+
+      Map<String, Object> parametros = new HashMap<>();
+
+      if (nomeEstado == null) {
+        parametros.put("nomeEstado", "%%");
+      } else {
+        parametros.put("nomeEstado", "%" + nomeEstado + "%");
+      }
+      if (siglaEstado == null) {
+        parametros.put("siglaEstado", "%%");
+      } else {
+        parametros.put("siglaEstado", "%" + siglaEstado + "%");
+      }
+
+      Connection conexao = HibernateUtil.getConexao();
+
+      JasperPrint relatorio = JasperFillManager.fillReport(caminho, parametros, conexao);
+      JasperViewer viewer = new JasperViewer(relatorio, false);
+      if (relatorio.getAnchorIndexes().isEmpty()) {
+        System.out.println("SemPagina");
+      } else {
+
+        viewer.setTitle("Relátorio de Estado(s)");
+        viewer.setVisible(true);
+        viewer.toFront();
+      }
+      ;
+      // JasperPrintManager.printReport(relatorio, true);
+
+    } catch (JRException erro) {
+      Messages.addGlobalError("Ocorreu um erro ao tentar gerar o relatório");
+      erro.printStackTrace();
     }
   }
 }

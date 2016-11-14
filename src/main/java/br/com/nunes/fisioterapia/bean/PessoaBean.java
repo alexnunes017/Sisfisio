@@ -182,10 +182,7 @@ public class PessoaBean implements Serializable {
       String nomeEstado = (String) filtros.get("nome");
       String siglaEstado = (String) filtros.get("sigla");
 
-      String caminho = Faces.getRealPath("/resources/reports/rel_Estados.jasper");
-
-      // String caminhoBanner =
-      // Faces.getRealPath("/resources/images/banner2.jpg");
+      String caminho = Faces.getRealPath("/resources/reports/rel_Pacientes.jasper");
 
       Map<String, Object> parametros = new HashMap<>();
 
@@ -199,8 +196,6 @@ public class PessoaBean implements Serializable {
       } else {
         parametros.put("siglaEstado", "%" + siglaEstado + "%");
       }
-
-      // parametros.put("CAMINHO_BANNER", caminhoBanner);
 
       Connection conexao = HibernateUtil.getConexao();
 
