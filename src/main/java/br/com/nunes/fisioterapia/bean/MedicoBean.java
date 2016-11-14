@@ -99,22 +99,22 @@ public class MedicoBean implements Serializable {
       DataTable tabela = (DataTable) Faces.getViewRoot().findComponent("formListagem:tabela");
       Map<String, Object> filtros = tabela.getFilters();
 
-      String nomeEstado = (String) filtros.get("nome");
-      String siglaEstado = (String) filtros.get("sigla");
+      String nomeMedico = (String) filtros.get("nomeMedico");
+      String crmMedico = (String) filtros.get("crmMedico");
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Medicos.jasper");
 
       Map<String, Object> parametros = new HashMap<>();
 
-      if (nomeEstado == null) {
-        parametros.put("nomeEstado", "%%");
+      if (nomeMedico == null) {
+        parametros.put("nomeMedico", "%%");
       } else {
-        parametros.put("nomeEstado", "%" + nomeEstado + "%");
+        parametros.put("nomeMedico", "%" + nomeMedico + "%");
       }
-      if (siglaEstado == null) {
-        parametros.put("siglaEstado", "%%");
+      if (crmMedico == null) {
+        parametros.put("crmMedico", "%%");
       } else {
-        parametros.put("siglaEstado", "%" + siglaEstado + "%");
+        parametros.put("crmMedico", "%" + crmMedico + "%");
       }
 
       Connection conexao = HibernateUtil.getConexao();
@@ -122,15 +122,14 @@ public class MedicoBean implements Serializable {
       JasperPrint relatorio = JasperFillManager.fillReport(caminho, parametros, conexao);
       JasperViewer viewer = new JasperViewer(relatorio, false);
       if (relatorio.getAnchorIndexes().isEmpty()) {
-        System.out.println("SemPagina");
+        System.out.println("Não a Dados");
       } else {
 
-        viewer.setTitle("Relátorio de Estado(s)");
+        viewer.setTitle("Relátorio de Médico(s)");
         viewer.setVisible(true);
         viewer.toFront();
       }
       ;
-      // JasperPrintManager.printReport(relatorio, true);
 
     } catch (JRException erro) {
       Messages.addGlobalError("Ocorreu um erro ao tentar gerar o relatório");

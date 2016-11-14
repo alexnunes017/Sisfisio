@@ -179,22 +179,28 @@ public class PessoaBean implements Serializable {
       DataTable tabela = (DataTable) Faces.getViewRoot().findComponent("formListagem:tabela");
       Map<String, Object> filtros = tabela.getFilters();
 
-      String nomeEstado = (String) filtros.get("nome");
-      String siglaEstado = (String) filtros.get("sigla");
+      String nomePessoa = (String) filtros.get("nomePessoa");
+      String cpfPessoa = (String) filtros.get("cpfPessoa");
+      String tipoPessoa = (String) filtros.get("tipoPessoa");
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Pacientes.jasper");
 
       Map<String, Object> parametros = new HashMap<>();
 
-      if (nomeEstado == null) {
-        parametros.put("nomeEstado", "%%");
+      if (nomePessoa == null) {
+        parametros.put("nomePessoa", "%%");
       } else {
-        parametros.put("nomeEstado", "%" + nomeEstado + "%");
+        parametros.put("nomePessoa", "%" + nomePessoa + "%");
       }
-      if (siglaEstado == null) {
-        parametros.put("siglaEstado", "%%");
+      if (cpfPessoa == null) {
+        parametros.put("cpfPessoa", "%%");
       } else {
-        parametros.put("siglaEstado", "%" + siglaEstado + "%");
+        parametros.put("cpfPessoa", "%" + cpfPessoa + "%");
+      }
+      if (tipoPessoa == null) {
+        parametros.put("tipoPessoa", "%%");
+      } else {
+        parametros.put("tipoPessoa", "%" + tipoPessoa + "%");
       }
 
       Connection conexao = HibernateUtil.getConexao();
@@ -202,15 +208,14 @@ public class PessoaBean implements Serializable {
       JasperPrint relatorio = JasperFillManager.fillReport(caminho, parametros, conexao);
       JasperViewer viewer = new JasperViewer(relatorio, false);
       if (relatorio.getAnchorIndexes().isEmpty()) {
-        System.out.println("SemPagina");
+        System.out.println("Sem Dados");
       } else {
 
-        viewer.setTitle("Relátorio de Estado(s)");
+        viewer.setTitle("Relátorio de Pessoa(s)");
         viewer.setVisible(true);
         viewer.toFront();
       }
       ;
-      // JasperPrintManager.printReport(relatorio, true);
 
     } catch (JRException erro) {
       Messages.addGlobalError("Ocorreu um erro ao tentar gerar o relatório");

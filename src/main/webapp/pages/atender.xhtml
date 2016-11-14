@@ -95,7 +95,9 @@
 
 							<p:column>
 								<p:commandButton icon="ui-icon-print"
-									actionListener="#{estadoBean.imprimir}" />
+									actionListener="#{tratamentoBean.imprimir}">
+									<f:attribute name="consultaSelecionado" value="#{consulta}" />
+								</p:commandButton>
 							</p:column>
 
 						</p:dataTable>

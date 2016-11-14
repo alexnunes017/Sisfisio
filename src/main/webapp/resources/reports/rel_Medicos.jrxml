@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_Medicos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c601b6d-7573-4d94-92af-438772511f9c">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="191"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="nomeMedico" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -85,6 +85,9 @@ ORDER BY  m.nome ASC, m.crm ASC]]>
 	</columnHeader>
 	<detail>
 		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" uuid="f69fd837-23d0-4424-a73b-db375cc8d152"/>
+			</rectangle>
 			<textField>
 				<reportElement x="0" y="0" width="185" height="20" uuid="128dbcaa-3e94-4ca9-9c6d-a266e818058f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">

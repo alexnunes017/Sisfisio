@@ -127,7 +127,7 @@ public class TratamentoBean implements Serializable {
       UsuarioDAO usuarioDAO = new UsuarioDAO();
       MedicoDAO medicoDAO = new MedicoDAO();
 
-  //    consulta = new Consulta();
+      // consulta = new Consulta();
       tratamento = new Tratamento();
       fisioterapeutas = fisioterapeutaDAO.listar();
       pessoas = pessoaDAO.listarTipo("tipo", 'P');
@@ -215,29 +215,18 @@ public class TratamentoBean implements Serializable {
     novo();
 
   }
-  
-  public void imprimir() {
-    try {
-      DataTable tabela = (DataTable) Faces.getViewRoot().findComponent("formListagem:tabela");
-      Map<String, Object> filtros = tabela.getFilters();
 
-      String nomeEstado = (String) filtros.get("nome");
-      String siglaEstado = (String) filtros.get("sigla");
+  public void imprimir(ActionEvent event) {
+    try {
+      
+      consulta = (Consulta) event.getComponent().getAttributes().get("consultaSelecionada");
+
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Tratamento.jasper");
 
       Map<String, Object> parametros = new HashMap<>();
 
-      if (nomeEstado == null) {
-        parametros.put("nomeEstado", "%%");
-      } else {
-        parametros.put("nomeEstado", "%" + nomeEstado + "%");
-      }
-      if (siglaEstado == null) {
-        parametros.put("siglaEstado", "%%");
-      } else {
-        parametros.put("siglaEstado", "%" + siglaEstado + "%");
-      }
+      parametros.put("consulta", consulta.getCodigo());
 
       Connection conexao = HibernateUtil.getConexao();
 
@@ -247,12 +236,10 @@ public class TratamentoBean implements Serializable {
         System.out.println("SemPagina");
       } else {
 
-        viewer.setTitle("Relátorio de Estado(s)");
+        viewer.setTitle("Relátorio de Tratamento");
         viewer.setVisible(true);
         viewer.toFront();
       }
-      ;
-      // JasperPrintManager.printReport(relatorio, true);
 
     } catch (JRException erro) {
       Messages.addGlobalError("Ocorreu um erro ao tentar gerar o relatório");
