@@ -98,7 +98,10 @@
 								<h:outputText value="#{neurologica.examesComplemetares}" />
 							</p:column>
 
-
+							<p:column>
+								<p:commandButton icon="ui-icon-print"
+									actionListener="#{estadoBean.imprimir}" />
+							</p:column>
 
 						</p:dataTable>
 					</p:rowExpansion>

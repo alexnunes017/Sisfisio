@@ -18,6 +18,9 @@
 						<p:commandButton value="Novo" oncomplete="PF('dialogo').show();"
 							actionListener="#{medicoBean.novo}" update=":formCadastro:painel"
 							styleClass="buttonfont" />
+							
+							<p:commandButton icon="ui-icon-print"
+							actionListener="#{estadoBean.imprimir}" />
 					</f:facet>
 
 					<p:column headerText="Nome" sortBy="#{medico.nome}"

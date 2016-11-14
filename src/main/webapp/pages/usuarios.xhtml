@@ -21,6 +21,9 @@
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
+						
+						<p:commandButton icon="ui-icon-print"
+							actionListener="#{estadoBean.imprimir}" />
 					</f:facet>
 
 					<p:column headerText="Nome" sortBy="#{usuario.pessoa.nome}"

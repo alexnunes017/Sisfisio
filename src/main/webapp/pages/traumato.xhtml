@@ -86,7 +86,8 @@
 					</p:column>
 					<p:rowExpansion>
 						<p:dataTable emptyMessage="Nenhum registro encontrado"
-							value="#{consulta.traumatologicas}" var="traumato" styleClass="tabelafont">
+							value="#{consulta.traumatologicas}" var="traumato"
+							styleClass="tabelafont">
 
 							<p:column headerText="qp">
 								<h:outputText value="#{traumato.qp}" />
@@ -96,6 +97,11 @@
 							</p:column>
 							<p:column headerText="exames complementares">
 								<h:outputText value="#{traumato.examesComplemetares}" />
+							</p:column>
+
+							<p:column>
+								<p:commandButton icon="ui-icon-print"
+									actionListener="#{estadoBean.imprimir}" />
 							</p:column>
 
 

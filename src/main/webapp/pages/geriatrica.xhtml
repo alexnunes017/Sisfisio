@@ -24,7 +24,7 @@
 					<!-- 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" /> -->
 					<!-- 						</p:commandButton> -->
 					<!-- 					</f:facet> -->
-					
+
 					<p:column style="width:16px">
 						<p:rowToggler />
 					</p:column>
@@ -48,14 +48,15 @@
 					<p:column headerText="Status" sortBy="#{consulta.statusFormatado}"
 						filterBy="#{consulta.status}">
 						<f:facet name="filter">
-							<p:selectOneMenu onchange="PF('tabela').filter()"   styleClass="outputfont">
+							<p:selectOneMenu onchange="PF('tabela').filter()"
+								styleClass="outputfont">
 								<f:selectItem itemValue="" itemLabel="Todos" />
 								<f:selectItem itemValue="M" itemLabel="Marcada" />
 								<f:selectItem itemValue="C" itemLabel="Cancelada" />
 								<f:selectItem itemValue="R" itemLabel="Realizada" />
 							</p:selectOneMenu>
 						</f:facet>
-						<h:outputText value="#{consulta.statusFormatado}"/>
+						<h:outputText value="#{consulta.statusFormatado}" />
 					</p:column>
 
 					<p:column headerText="Fisioterapeuta"
@@ -83,9 +84,10 @@
 
 
 					</p:column>
-						<p:rowExpansion>
+					<p:rowExpansion>
 						<p:dataTable emptyMessage="Nenhum registro encontrado"
-							value="#{consulta.geriatricas}" var="geriatrica" styleClass="tabelafont">
+							value="#{consulta.geriatricas}" var="geriatrica"
+							styleClass="tabelafont">
 
 							<p:column headerText="qp">
 								<h:outputText value="#{geriatrica.qp}" />
@@ -97,12 +99,17 @@
 								<h:outputText value="#{geriatrica.examesComplemetares}" />
 							</p:column>
 
+							<p:column>
+								<p:commandButton icon="ui-icon-print"
+									actionListener="#{estadoBean.imprimir}" />
+							</p:column>s
+
 
 
 						</p:dataTable>
 					</p:rowExpansion>
-					
-					
+
+
 				</p:dataTable>
 				<p:confirmDialog global="true">
 					<p:commandButton value="Sim" type="button"
