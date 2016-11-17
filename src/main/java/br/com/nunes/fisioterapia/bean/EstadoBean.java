@@ -104,12 +104,13 @@ public class EstadoBean implements Serializable {
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Estados.jasper");
 
-      String caminhoBanner = Faces.getRealPath("/resources/images/banner2.jpg");
+      String caminhoBanner = Faces.getRealPath("/resources/images/banner2.jpeg");
 
       Map<String, Object> parametros = new HashMap<>();
 
       parametros.put("CAMINHO_BANNER", caminhoBanner);
 
+        System.out.println(caminhoBanner);
       if (nomeEstado == null) {
         parametros.put("nomeEstado", "%%");
       } else {
