@@ -223,6 +223,7 @@ public class TratamentoBean implements Serializable {
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Tratamento.jasper");
       String caminhoBanner = Faces.getRealPath("/resources/images/banner2.jpeg");
+      
 
       Map<String, Object> parametros = new HashMap<>();
       parametros.put("CAMINHO_BANNER", caminhoBanner);
