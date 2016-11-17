@@ -5,6 +5,7 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="nomeEstado" class="java.lang.String"/>
 	<parameter name="siglaEstado" class="java.lang.String"/>
+	<parameter name="CAMINHO_BANNER" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM fisioterapia.estado
 WHERE fisioterapia.estado.nome LIKE  $P{nomeEstado} AND fisioterapia.estado.sigla LIKE  $P{siglaEstado}
@@ -36,7 +37,7 @@ fisioterapia.estado.sigla ASC]]>
 		<band height="49" splitType="Stretch">
 			<image>
 				<reportElement x="223" y="-4" width="89" height="53" uuid="f8ba8aae-ecf2-4221-a623-68d36ea07c48"/>
-				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{CAMINHO_BANNER}]]></imageExpression>
 			</image>
 		</band>
 	</title>
