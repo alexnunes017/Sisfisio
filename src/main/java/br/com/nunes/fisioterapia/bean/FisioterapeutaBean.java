@@ -128,9 +128,10 @@ public class FisioterapeutaBean implements Serializable {
       String crefitoFisioterapeuta = (String) filtros.get("sigla");
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Fisioterapeutas.jasper");
+      String caminhoBanner = Faces.getRealPath("/resources/images/banner2.jpeg");
 
       Map<String, Object> parametros = new HashMap<>();
-
+      parametros.put("CAMINHO_BANNER", caminhoBanner);
       if (nomePessoa == null) {
         parametros.put("nomePessoa", "%%");
       } else {

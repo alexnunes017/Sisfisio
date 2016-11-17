@@ -104,7 +104,7 @@ public class EstadoBean implements Serializable {
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Estados.jasper");
 
-      String caminhoBanner = Faces.getRealPath("/resources/images/banner2.jpg");
+      String caminhoBanner = Faces.getRealPath("/resources/images/banner2.jpeg");
 
       Map<String, Object> parametros = new HashMap<>();
 
@@ -126,7 +126,7 @@ public class EstadoBean implements Serializable {
       JasperPrint relatorio = JasperFillManager.fillReport(caminho, parametros, conexao);
       JasperViewer viewer = new JasperViewer(relatorio, false);
       if (relatorio.getAnchorIndexes().isEmpty()) {
-        System.out.println("SemPagina");
+        System.out.println("Sem Dados");
       } else {
 
         viewer.setTitle("Relátorio de Estado(s)");
