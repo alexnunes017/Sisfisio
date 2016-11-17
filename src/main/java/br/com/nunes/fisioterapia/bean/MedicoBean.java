@@ -103,8 +103,10 @@ public class MedicoBean implements Serializable {
       String crmMedico = (String) filtros.get("crmMedico");
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Medicos.jasper");
+      String caminhoBanner = Faces.getRealPath("/resources/images/banner2.jpeg");
 
       Map<String, Object> parametros = new HashMap<>();
+      parametros.put("CAMINHO_BANNER", caminhoBanner);
 
       if (nomeMedico == null) {
         parametros.put("nomeMedico", "%%");

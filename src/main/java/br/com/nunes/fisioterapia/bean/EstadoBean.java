@@ -127,7 +127,7 @@ public class EstadoBean implements Serializable {
       JasperPrint relatorio = JasperFillManager.fillReport(caminho, parametros, conexao);
       JasperViewer viewer = new JasperViewer(relatorio, false);
       if (relatorio.getAnchorIndexes().isEmpty()) {
-        System.out.println("SemPagina");
+        System.out.println("Sem Dados");
       } else {
 
         viewer.setTitle("Relátorio de Estado(s)");

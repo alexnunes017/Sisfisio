@@ -179,12 +179,10 @@ public class UsuarioBean implements Serializable {
       String siglaEstado = (String) filtros.get("sigla");
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Estados.jasper");
-
-      // String caminhoBanner =
-      // Faces.getRealPath("/resources/images/banner2.jpg");
+      String caminhoBanner = Faces.getRealPath("/resources/images/banner2.jpeg");
 
       Map<String, Object> parametros = new HashMap<>();
-
+      parametros.put("CAMINHO_BANNER", caminhoBanner);
       if (nomeEstado == null) {
         parametros.put("nomeEstado", "%%");
       } else {

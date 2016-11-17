@@ -13,7 +13,6 @@ import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
-import org.primefaces.component.datatable.DataTable;
 
 import br.com.nunes.fisioterapia.dao.ConsultaDAO;
 import br.com.nunes.fisioterapia.dao.FisioterapeutaDAO;
@@ -223,9 +222,10 @@ public class TratamentoBean implements Serializable {
 
 
       String caminho = Faces.getRealPath("/resources/reports/rel_Tratamento.jasper");
+      String caminhoBanner = Faces.getRealPath("/resources/images/banner2.jpeg");
 
       Map<String, Object> parametros = new HashMap<>();
-
+      parametros.put("CAMINHO_BANNER", caminhoBanner);
       parametros.put("consulta", consulta.getCodigo());
 
       Connection conexao = HibernateUtil.getConexao();
