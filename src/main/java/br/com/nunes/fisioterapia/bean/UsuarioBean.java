@@ -11,6 +11,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
@@ -25,10 +30,6 @@ import br.com.nunes.fisioterapia.domain.Estado;
 import br.com.nunes.fisioterapia.domain.Pessoa;
 import br.com.nunes.fisioterapia.domain.Usuario;
 import br.com.nunes.fisioterapia.util.HibernateUtil;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.view.JasperViewer;
 
 @SuppressWarnings("serial")
 @ManagedBean
