@@ -4,6 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="consulta" class="java.lang.Long"/>
+	<parameter name="CAMINHO_BANNER" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM view_Traumatologica t WHERE t.consulta =  $P{consulta}]]>
 	</queryString>
@@ -143,7 +144,7 @@
 		<band height="53" splitType="Stretch">
 			<image>
 				<reportElement x="227" y="0" width="89" height="53" uuid="03314838-9b36-4414-aedb-70aa86ade28e"/>
-				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{CAMINHO_BANNER}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -158,7 +159,7 @@
 					<rightPen lineWidth="0.0"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="14" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Avaliação Traumatologica ]]></text>
 			</staticText>
@@ -1019,14 +1020,14 @@
 			<textField>
 				<reportElement x="447" y="0" width="83" height="16" uuid="290b7982-1414-4b1c-952a-af1d210f9591"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="10" isBold="false"/>
+					<font fontName="Serif" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página(s) "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement x="530" y="0" width="22" height="16" uuid="40bb8ebb-8669-4873-b512-4be1d420395e"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Calibri"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
@@ -1036,7 +1037,7 @@
 					<topPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="10" isBold="false" isItalic="true"/>
+					<font fontName="SansSerif" size="10" isBold="false" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[SisFisio - Sistema de Fisiotepia]]></text>
 			</staticText>

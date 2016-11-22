@@ -9,6 +9,7 @@
 	<parameter name="nomeEstado" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="CAMINHO_BANNER" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
      cidade.nome,
@@ -88,7 +89,7 @@ WHERE
 		<band height="53" splitType="Stretch">
 			<image>
 				<reportElement x="220" y="0" width="89" height="53" uuid="6f2ddb36-3359-4212-af31-1383bd9cfcdc"/>
-				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{CAMINHO_BANNER}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -97,7 +98,7 @@ WHERE
 			<staticText>
 				<reportElement x="0" y="0" width="555" height="24" forecolor="#0000FF" uuid="8a6597e1-a87e-4007-a8d0-ac7e7eb09959"/>
 				<textElement textAlignment="Center">
-					<font fontName="Calibri" size="14" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relátorio de Cidade(s)]]></text>
 			</staticText>
@@ -136,21 +137,21 @@ WHERE
 					<topPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" isItalic="true"/>
+					<font fontName="SansSerif" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[SisFisio - Sistema de Fisiotepia]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
 				<reportElement x="527" y="0" width="26" height="20" uuid="f0dc6947-5482-44c7-b21e-65bceaf0e811"/>
 				<textElement>
-					<font fontName="Calibri"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="447" y="0" width="80" height="20" uuid="266ba884-e6d7-4eb8-b93d-64f202893ff8"/>
 				<textElement textAlignment="Right">
-					<font fontName="Calibri"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página(s) "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>

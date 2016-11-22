@@ -4,6 +4,7 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="consulta" class="java.lang.Long"/>
+	<parameter name="CAMINHO_BANNER" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM view_Neurologica t  WHERE t.consulta = $P{consulta}]]>
 	</queryString>
@@ -290,7 +291,7 @@
 		<band height="53" splitType="Stretch">
 			<image>
 				<reportElement x="228" y="0" width="89" height="53" uuid="03314838-9b36-4414-aedb-70aa86ade28e"/>
-				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{CAMINHO_BANNER}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -302,7 +303,7 @@
 					<bottomPen lineWidth="0.5" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="14" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Neurologica]]></text>
 			</staticText>

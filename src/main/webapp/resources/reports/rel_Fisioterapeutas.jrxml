@@ -5,6 +5,7 @@
 	<property name="ireport.y" value="0"/>
 	<parameter name="nomePessoa" class="java.lang.String"/>
 	<parameter name="crefitoFisioterapeuta" class="java.lang.String"/>
+	<parameter name="CAMINHO_BANNER" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM fisioterapeuta f
 INNER JOIN pessoa p ON (p.codigo = pessoa_codigo)
@@ -66,7 +67,7 @@ ORDER BY p.nome ASC, f.crefito ASC]]>
 		<band height="53" splitType="Stretch">
 			<image>
 				<reportElement x="238" y="0" width="89" height="53" uuid="76e7eefc-5a1d-4dc4-83f1-cce4cfb0623f"/>
-				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{CAMINHO_BANNER}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -78,7 +79,7 @@ ORDER BY p.nome ASC, f.crefito ASC]]>
 					<bottomPen lineWidth="0.5" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="14" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relátorio  de Fisioterapeuta(s)]]></text>
 			</staticText>
@@ -184,7 +185,7 @@ ORDER BY p.nome ASC, f.crefito ASC]]>
 			<textField>
 				<reportElement x="450" y="0" width="83" height="16" uuid="386d5edb-f28c-47e3-839c-ad128e8deee7"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="10" isBold="false"/>
+					<font fontName="Serif" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página(s) "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
@@ -194,14 +195,14 @@ ORDER BY p.nome ASC, f.crefito ASC]]>
 					<topPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="10" isBold="false" isItalic="true"/>
+					<font fontName="SansSerif" size="10" isBold="false" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[SisFisio - Sistema de Fisiotepia]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
 				<reportElement x="533" y="0" width="22" height="16" uuid="d1dd34e4-4038-40e9-8867-0708ffab69fa"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Calibri"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

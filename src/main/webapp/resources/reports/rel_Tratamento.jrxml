@@ -2,8 +2,9 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_Tratamento" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f44aa5c1-4498-438b-b333-83c849d65c83">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="9"/>
 	<parameter name="consulta" class="java.lang.Long"/>
+	<parameter name="CAMINHO_BANNER" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM view_Tratamento t  WHERE t.consulta = $P{consulta}]]>
 	</queryString>
@@ -56,7 +57,7 @@
 		<band height="53" splitType="Stretch">
 			<image>
 				<reportElement x="228" y="0" width="89" height="53" uuid="03314838-9b36-4414-aedb-70aa86ade28e"/>
-				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{CAMINHO_BANNER}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -68,7 +69,7 @@
 					<bottomPen lineWidth="0.5" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="14" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relátorio de Tratamento]]></text>
 			</staticText>
@@ -249,14 +250,14 @@
 			<textField>
 				<reportElement x="450" y="0" width="83" height="16" uuid="290b7982-1414-4b1c-952a-af1d210f9591"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="10" isBold="false"/>
+					<font fontName="Serif" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página(s) "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement x="533" y="0" width="22" height="16" uuid="40bb8ebb-8669-4873-b512-4be1d420395e"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Calibri"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
@@ -266,7 +267,7 @@
 					<topPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="10" isBold="false" isItalic="true"/>
+					<font fontName="SansSerif" size="10" isBold="false" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[SisFisio - Sistema de Fisiotepia]]></text>
 			</staticText>

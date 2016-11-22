@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rel_Medicos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0c601b6d-7573-4d94-92af-438772511f9c">
-	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="191"/>
+	<property name="ireport.zoom" value="1.0245201830476058"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="nomeMedico" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="crmMedico" class="java.lang.String"/>
+	<parameter name="CAMINHO_BANNER" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM medico m WHERE m.nome LIKE $P{nomeMedico} AND
 m.crm LIKE $P{crmMedico}
@@ -28,7 +29,7 @@ ORDER BY  m.nome ASC, m.crm ASC]]>
 		<band height="53" splitType="Stretch">
 			<image>
 				<reportElement x="234" y="0" width="89" height="53" uuid="e2849fa6-1404-4d2b-9414-11fb8bafe43e"/>
-				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{CAMINHO_BANNER}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -40,7 +41,7 @@ ORDER BY  m.nome ASC, m.crm ASC]]>
 					<bottomPen lineWidth="0.5" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font fontName="Calibri" size="14" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relátorio de Médico(s)]]></text>
 			</staticText>
@@ -55,7 +56,7 @@ ORDER BY  m.nome ASC, m.crm ASC]]>
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="12" isBold="true"/>
+					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CÓDIGO]]></text>
 			</staticText>
@@ -65,7 +66,7 @@ ORDER BY  m.nome ASC, m.crm ASC]]>
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="12" isBold="true"/>
+					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOME]]></text>
 			</staticText>
@@ -77,7 +78,7 @@ ORDER BY  m.nome ASC, m.crm ASC]]>
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="12" isBold="true"/>
+					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CRM]]></text>
 			</staticText>
@@ -91,21 +92,21 @@ ORDER BY  m.nome ASC, m.crm ASC]]>
 			<textField>
 				<reportElement x="0" y="0" width="185" height="20" uuid="128dbcaa-3e94-4ca9-9c6d-a266e818058f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="11"/>
+					<font fontName="Arial" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="185" y="0" width="185" height="20" uuid="7e4d745f-9788-48af-ba64-5358297e55b9"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="11"/>
+					<font fontName="Arial" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="370" y="0" width="185" height="20" uuid="06f497bd-1b98-487d-848f-d895f5f78041"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" size="11"/>
+					<font fontName="Arial" size="11"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{crm}]]></textFieldExpression>
 			</textField>
@@ -119,21 +120,21 @@ ORDER BY  m.nome ASC, m.crm ASC]]>
 					<topPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" isItalic="true"/>
+					<font fontName="SansSerif" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[SisFisio - Sistema de Fisiotepia]]></text>
 			</staticText>
 			<textField>
 				<reportElement x="448" y="0" width="83" height="20" uuid="1309106e-570b-4d42-b1f7-cb2db6b0fafa"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="10" isBold="false"/>
+					<font fontName="Serif" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página(s) "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
 				<reportElement x="531" y="0" width="22" height="20" uuid="0cc272ad-fe4a-4b65-ba64-9718a33c3971"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
-					<font fontName="Calibri"/>
+					<font fontName="Serif"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>

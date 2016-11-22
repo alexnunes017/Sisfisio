@@ -6,6 +6,7 @@
 	<parameter name="tipoPessoa" class="java.lang.String"/>
 	<parameter name="nomePessoa" class="java.lang.String"/>
 	<parameter name="cpfPessoa" class="java.lang.String"/>
+	<parameter name="CAMINHO_BANNER" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT p.codigo,
     p.bairro,
@@ -70,7 +71,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 		<band height="53" splitType="Stretch">
 			<image>
 				<reportElement x="366" y="0" width="89" height="53" uuid="03314838-9b36-4414-aedb-70aa86ade28e"/>
-				<imageExpression><![CDATA["D:\\Desenvolvimento\\Fisioterapia\\src\\main\\webapp\\resources\\images\\banner2.jpeg"]]></imageExpression>
+				<imageExpression><![CDATA[$P{CAMINHO_BANNER}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -82,7 +83,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Calibri" size="14" isBold="true"/>
+					<font fontName="Arial" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Relátorio de Pessoa(s)]]></text>
 			</staticText>
@@ -97,7 +98,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CÓDIGO]]></text>
 			</staticText>
@@ -107,7 +108,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[BAIRRO]]></text>
 			</staticText>
@@ -117,7 +118,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CELULAR]]></text>
 			</staticText>
@@ -127,7 +128,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CEP]]></text>
 			</staticText>
@@ -137,7 +138,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[COMPLEMENTO]]></text>
 			</staticText>
@@ -147,7 +148,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[E-MAIL]]></text>
 			</staticText>
@@ -157,7 +158,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NÚMERO]]></text>
 			</staticText>
@@ -167,7 +168,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RUA]]></text>
 			</staticText>
@@ -178,7 +179,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CIDADE]]></text>
 			</staticText>
@@ -188,7 +189,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TELEFONE]]></text>
 			</staticText>
@@ -198,7 +199,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[NOME]]></text>
 			</staticText>
@@ -208,7 +209,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CPF]]></text>
 			</staticText>
@@ -218,7 +219,7 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow" isBold="true"/>
+					<font fontName="Arial" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RG]]></text>
 			</staticText>
@@ -229,91 +230,91 @@ WHERE p.tipo LIKE $P{tipoPessoa} AND p.nome LIKE $P{nomePessoa} AND p.cpf LIKE $
 			<textField>
 				<reportElement x="0" y="0" width="43" height="20" uuid="59b8d082-8e4d-43a2-946d-70f29938193e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="571" y="0" width="42" height="20" uuid="2fc6f021-0a36-4330-b916-850961915e0f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="286" y="0" width="70" height="20" uuid="f584f6e2-1807-4910-9942-ec43f3b9a6c2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{celular}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="613" y="0" width="57" height="20" uuid="2ea2a0d3-b3ee-45ae-9a5d-7fc16bc18627"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cep}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="669" y="0" width="76" height="20" uuid="21613f4e-9a44-4ce6-b3c4-76251bf31a15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{complemento}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="417" y="0" width="57" height="20" uuid="419bb66b-dac1-4146-9d17-9aaa5518901d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="531" y="0" width="40" height="20" uuid="e8f80469-4a0c-4052-9629-2f13cd64753f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="474" y="0" width="57" height="20" uuid="bab1da17-9578-42e0-ae41-e8f5421e9df2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{rua}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="745" y="0" width="57" height="20" uuid="86ca4b19-58c0-4421-8002-c1e71d807daa"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{ncidade}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="356" y="0" width="58" height="20" uuid="b1dcb395-41d8-4777-9fe0-6f728347905d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{telefone}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="43" y="0" width="101" height="20" uuid="b38ba81f-e087-477f-a46f-d518578c5ddd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="144" y="0" width="70" height="20" uuid="abd2282c-168d-4c38-963d-dc73c0922696"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="214" y="0" width="72" height="20" uuid="16f46f21-6d42-45df-bf42-bff10001c2d8"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial Narrow"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{rg}]]></textFieldExpression>
 			</textField>
