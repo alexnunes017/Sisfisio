@@ -2,11 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.com.nunes.fisioterapia</groupId>
-	<artifactId>Fisioterapia</artifactId>
 	<version>1.0</version>
+	<artifactId>Fisioterapia</artifactId>
+	<name>Fisioterapia</name>
 	<packaging>war</packaging>
 	<!-- Codificação dos caracteres -->
-	<properties>
+<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<!-- Parâmetros de execução -->
@@ -109,7 +110,7 @@
 			<artifactId>shiro-core</artifactId>
 			<version>1.2.4</version>
 		</dependency>
-	<!-- JasperReports -->
+		<!-- JasperReports -->
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
