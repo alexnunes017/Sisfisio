@@ -13,7 +13,7 @@ public class PessoaDAOTest {
 
 		Cidade cidade = new Cidade();
 		CidadeDAO cidadeDAO = new CidadeDAO();
-		cidade = cidadeDAO.buscar(1L);
+		cidade = cidadeDAO.buscar(2045L);
 		Pessoa pessoa = new Pessoa("Alex","000.000.000-00","555","rua",1,"asd","asd","asd","asd","asd","asd",'M',cidade);
 		PessoaDAO pessoaDAO = new PessoaDAO();
 		pessoaDAO.merge(pessoa);
